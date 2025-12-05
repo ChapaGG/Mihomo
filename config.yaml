@@ -1,8 +1,24 @@
+# --- СПИСОК ПРОКСИ-СЕРВЕРОВ (КЛЮЧИ) ---
+proxies:
+- name: 'PROXY'
+  type: vless
+  server: xxxxxxxx
+  port: 443
+  uuid: xxxxxxxx
+  network: tcp
+  udp: true
+  flow: xtls-rprx-vision
+  tls: true
+  servername: xxxxxxxx
+  reality-opts:
+    public-key: xxxxxxxx
+    short-id: xxxxxxxx
+  client-fingerprint: xxxxxxxx
+
+# --- ОБЩИЕ НАСТРОЙКИ ЯДРА ---
 redir-port: 1182
 tproxy-port: 1181
 mixed-port: 1080
-
-# --- ОБЩИЕ НАСТРОЙКИ ЯДРА ---
 tcp-concurrent: true
 allow-lan: true
 mode: rule
@@ -31,23 +47,7 @@ sniffer:
     QUIC:
       ports: [443]
 
-# --- СПИСОК ПРОКСИ-СЕРВЕРОВ (КЛЮЧИ) ---
-proxies:
-- name: 'PROXY'
-  type: vless
-  server: xxxxxxxx
-  port: 443
-  uuid: xxxxxxxx
-  network: tcp
-  udp: true
-  flow: xtls-rprx-vision
-  tls: true
-  servername: xxxxxxxx
-  reality-opts:
-    public-key: xxxxxxxx
-    short-id: xxxxxxxx
-  client-fingerprint: xxxxxxxx
-
+# --- НАСТРОЙКИ DNS ---
 dns:
   enable: true
   listen: 0.0.0.0:7874
@@ -77,6 +77,19 @@ dns:
     - +.pool.ntp.org
     - +.msftconnecttest.com
     - +.3gppnetwork.org
+
+# --- Алиасы ---
+anchors:
+  a1: &domain { type: http, format: mrs, behavior: domain, interval: 86400 }
+  a2: &ipcidr { type: http, format: mrs, behavior: ipcidr, interval: 86400 }
+  a3: &classical { type: http, format: text, behavior: classical, interval: 86400 }
+  a4: &inline { type: inline, behavior: classical }
+
+# --- НАСТРОЙКИ GEO-ДАННЫХ ---
+geox-url:
+  geosite: "https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat"
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/latest/download/geoip.dat"
+
 
 # --- ГРУППЫ ПРОКСИ (ПОЛИТИКИ) ---
 proxy-groups:
@@ -280,82 +293,31 @@ proxy-groups:
       - 'Остальной трафик'
       - DIRECT
 
-# --- НАСТРОЙКИ GEO-ДАННЫХ ---
-geox-url:
-  geosite: "https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat"
-  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/latest/download/geoip.dat"
-
 # --- ПРОВАЙДЕРЫ ПРАВИЛ ---
 rule-providers:
-  hagezi_pro:
+  adlist:
     type: http
-    behavior: domain
     format: mrs
+    behavior: domain
     url: https://github.com/zxc-rv/ad-filter/releases/latest/download/adlist.mrs
-    path: ./adblock/adlist.mrs
+    path: ./rule-providers/adlist.mrs
     interval: 86400
 
-  discord:
-    type: inline
-    behavior: classical
-    format: text
-    payload:
-      - AND,((DOMAIN-KEYWORD,discord),(NOT,((DOMAIN-SUFFIX,ru))))
-      - AND,((RULE-SET,Cloudflare-IPs,no-resolve),(NETWORK,TCP),(OR,((DST-PORT,2000-2400),(DST-PORT,8443))))
-      - AND,((RULE-SET,Cloudflare-IPs,no-resolve),(NETWORK,UDP),(DST-PORT,19200-19400))
-      - AND,((IP-CIDR,5.200.14.128/25,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-      - AND,((IP-CIDR,34.0.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-      - AND,((IP-CIDR,34.2.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-      - AND,((IP-CIDR,35.192.0.0/11,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-      - AND,((IP-CIDR,66.22.192.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-      - AND,((IP-CIDR,138.128.136.0/21,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+  discord@classical: { <<: *classical, url: https://github.com/zxc-rv/assets/raw/main/rules/discord.list }
 
 
 #  15/10/2026   xkeen -ap 80,443,596:599,1400,3478,5222,46420,50000:50100
-#  discord:
-#    type: inline
-#    behavior: classical
-#    format: text
-#    payload:
-#      - AND,((DOMAIN-KEYWORD,discord),(NOT,((DOMAIN-SUFFIX,ru))))
-#      - AND,((IP-CIDR,34.0.192.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,35.192.0.0/11,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,66.22.192.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-
-#  discord:
-#    type: inline
-#    behavior: classical
-#    format: text
-#    payload:
-#      - AND,((DOMAIN-KEYWORD,discord),(NOT,((DOMAIN-SUFFIX,ru))))
-#      - AND,((IP-CIDR,34.0.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,34.2.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,34.192.0.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,34.214.0.0/16,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,35.192.0.0/11,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,66.22.192.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,138.128.136.0/21,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,162.158.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,172.64.0.0/13,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-#      - AND,((IP-CIDR,5.200.14.128/25,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
-
-
-
-
-
-
 
 # --- ПРАВИЛА МАРШРUTИЗАЦИИ ---
 rules:
-  # ПРАВИЛО №0: Блокировка рекламы и трекеров
+  # Блокировка рекламы и трекеров
   - GEOSITE,category-ads-all,Блокировка рекламы
-  - RULE-SET,hagezi_pro,Блокировка рекламы
+  - RULE-SET,adlist,Блокировка рекламы
 
-  # ПРАВИЛО №1: Системные правила
+  # Системные правила
   - GEOIP,private,DIRECT,no-resolve
 
-
-  # ПРАВИЛО №2: Российский трафик
+  # Российский трафик
   - DOMAIN-SUFFIX,avito.ru,DIRECT
   - DOMAIN-SUFFIX,avito.st,DIRECT
   - GEOSITE,category-ru,RU трафик
@@ -365,12 +327,11 @@ rules:
   - DOMAIN-SUFFIX,yandex-pogoda.static-storage.net,RU трафик
   - GEOSITE,category-gov-ru,RU трафик
   - GEOIP,RU,RU трафик,no-resolve
-  
 
-  # ПРАВИЛО №3: Правила для конкретных сервисов
+  # Конкретные сервисы
   - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
   - GEOSITE,openai,OpenAI
-  - RULE-SET,discord,Discord
+  - RULE-SET,discord@classical,Discord
   - GEOSITE,tidal,Tidal
   - GEOSITE,linkedin,Linkedin
   - GEOSITE,facebook,Facebook
@@ -399,11 +360,11 @@ rules:
   - SRC-IP-CIDR,31.13.64.0/18,Whatsapp
   - SRC-IP-CIDR,31.13.80.0/20,Whatsapp
 
-  # ПРАВИЛО №5: Проверки
+  # Служебные проверки
   - DOMAIN-SUFFIX,2ip.io,2IP.IO
   - DOMAIN-SUFFIX,speedtest.net,speedtest.net
 
-  # ПРАВИЛО №6: Необходимые сервисы без выбора
+  # Необходимые сервисы без выбора
   - DOMAIN-SUFFIX,nnmclub.to,PROXY
   - DOMAIN-SUFFIX,rutracker.org,PROXY
   - DOMAIN-SUFFIX,4pda.to,PROXY
@@ -423,5 +384,5 @@ rules:
   - DOMAIN-SUFFIX,veeam.com,PROXY
   - DOMAIN-SUFFIX,iherb.com,PROXY
 
-  # ПРАВИЛО №7: Весь остальной трафик
+  # Весь остальной трафик
   - MATCH,DIRECT,Остальной трафик
