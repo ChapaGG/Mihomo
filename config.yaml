@@ -1,0 +1,427 @@
+redir-port: 1182
+tproxy-port: 1181
+mixed-port: 1080
+
+# --- ОБЩИЕ НАСТРОЙКИ ЯДРА ---
+tcp-concurrent: true
+allow-lan: true
+mode: rule
+geo-auto-update: true
+geo-update-interval: 168
+log-level: silent
+ipv6: false
+external-controller: 0.0.0.0:9090
+external-ui: ./zash
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
+geodata-mode: true
+profile:
+  store-selected: true
+find-process-mode: "off"
+
+# --- НАСТРОЙКИ СНИФФЕРА ---
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  sniff:
+    HTTP:
+      ports: [80]
+      override-destination: true
+    TLS:
+      ports: [443]
+    QUIC:
+      ports: [443]
+
+# --- СПИСОК ПРОКСИ-СЕРВЕРОВ (КЛЮЧИ) ---
+proxies:
+- name: 'PROXY'
+  type: vless
+  server: xxxxxxxx
+  port: 443
+  uuid: xxxxxxxx
+  network: tcp
+  udp: true
+  flow: xtls-rprx-vision
+  tls: true
+  servername: xxxxxxxx
+  reality-opts:
+    public-key: xxxxxxxx
+    short-id: xxxxxxxx
+  client-fingerprint: xxxxxxxx
+
+dns:
+  enable: true
+  listen: 0.0.0.0:7874
+  ipv6: false
+  cache-algorithm: arc
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+    - 208.67.222.222
+    - 208.67.220.220
+  nameserver:
+    - https://dns10.quad9.net/dns-query
+    - https://dns.aa.net.uk/dns-query
+    - https://doh.opendns.com/dns-query
+    - tls://dns.quad9.net
+    - tls://1.1.1.1
+    - tls://dns.opendns.com
+  nameserver-policy:
+    '+.supercell.net': 'https://dns.google/dns-query'
+    '+.brawlestarsgame.com': 'https://dns.google/dns-query'
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - +.pool.ntp.org
+    - +.msftconnecttest.com
+    - +.3gppnetwork.org
+
+# --- ГРУППЫ ПРОКСИ (ПОЛИТИКИ) ---
+proxy-groups:
+
+  - name: 'Gemini'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/331406/gemini.svg"
+
+  - name: 'Spotify'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/349511/spotify.svg"
+    
+  - name: 'Discord'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/331368/discord-v2.svg"
+    
+  - name: 'Whatsapp'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/349511/spotify.svg"
+
+  - name: 'Netflix'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/303341/netflix-1-logo.svg"
+
+  - name: '2IP.IO'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/415672/address-location-map.svg"
+
+  - name: 'Twitter'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/452121/twitter-1.svg"
+
+  - name: 'Instagram'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/452229/instagram-1.svg"
+
+  - name: 'Google'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/475656/google-color.svg"
+    
+    
+  - name: 'Twitch'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/448251/twitch.svg"
+    
+  - name: 'TikTok'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/349530/tiktok.svg"
+
+  - name: 'Microsoft'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/452062/microsoft.svg"
+
+  - name: 'GitHub'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/475654/github-color.svg"
+
+  - name: 'Tidal'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/504993/tidal.svg"
+
+  - name: 'Telegram'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/354443/telegram.svg"
+
+  - name: 'Linkedin'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/448234/linkedin.svg"
+    
+  - name: 'Facebook'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/475647/facebook-color.svg"
+
+  - name: 'RU трафик'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/508628/flag-ru.svg"
+
+  - name: 'Остальной трафик'
+    type: select
+    exclude-filter: "(?i)Russia|RU"
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/293111/maps-and-flags-global.svg"
+
+  - name: 'Блокировка рекламы'
+    type: select
+    proxies:
+      - 'PROXY'    
+      - REJECT
+      - DIRECT
+    icon: "https://www.svgrepo.com/show/300290/sign-roadblock.svg"
+
+  - name: 'YouTube'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/13671/youtube.svg"
+
+  - name: 'OpenAI'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/306500/openai.svg"
+
+  - name: 'Steam'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/452107/steam.svg"
+
+  - name: 'speedtest.net'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/355484/speed.svg"
+
+  - name: GLOBAL
+    type: select
+    hidden: true
+    proxies:
+      - 'YouTube'
+      - 'Google'
+      - 'Steam'
+      - 'Microsoft'
+      - 'GitHub'
+      - 'Gemini'  
+      - 'Instagram'
+      - 'Linkedin'
+      - 'Facebook'
+      - 'Telegram'
+      - 'Twitter'
+      - 'TikTok'
+      - 'Discord'
+      - 'Twitch'
+      - 'Whatsapp'
+      - 'Netflix'
+      - 'Spotify'
+      - 'OpenAI'
+      - 'Tidal' 
+      - 'RU трафик'
+      - 'Блокировка рекламы'
+      - 'Остальной трафик'
+      - DIRECT
+
+# --- НАСТРОЙКИ GEO-ДАННЫХ ---
+geox-url:
+  geosite: "https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat"
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/latest/download/geoip.dat"
+
+# --- ПРОВАЙДЕРЫ ПРАВИЛ ---
+rule-providers:
+  hagezi_pro:
+    type: http
+    behavior: domain
+    format: mrs
+    url: https://github.com/zxc-rv/ad-filter/releases/latest/download/adlist.mrs
+    path: ./adblock/adlist.mrs
+    interval: 86400
+
+  discord:
+    type: inline
+    behavior: classical
+    format: text
+    payload:
+      - AND,((DOMAIN-KEYWORD,discord),(NOT,((DOMAIN-SUFFIX,ru))))
+      - AND,((RULE-SET,Cloudflare-IPs,no-resolve),(NETWORK,TCP),(OR,((DST-PORT,2000-2400),(DST-PORT,8443))))
+      - AND,((RULE-SET,Cloudflare-IPs,no-resolve),(NETWORK,UDP),(DST-PORT,19200-19400))
+      - AND,((IP-CIDR,5.200.14.128/25,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+      - AND,((IP-CIDR,34.0.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+      - AND,((IP-CIDR,34.2.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+      - AND,((IP-CIDR,35.192.0.0/11,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+      - AND,((IP-CIDR,66.22.192.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+      - AND,((IP-CIDR,138.128.136.0/21,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+
+
+#  15/10/2026   xkeen -ap 80,443,596:599,1400,3478,5222,46420,50000:50100
+#  discord:
+#    type: inline
+#    behavior: classical
+#    format: text
+#    payload:
+#      - AND,((DOMAIN-KEYWORD,discord),(NOT,((DOMAIN-SUFFIX,ru))))
+#      - AND,((IP-CIDR,34.0.192.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,35.192.0.0/11,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,66.22.192.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+
+#  discord:
+#    type: inline
+#    behavior: classical
+#    format: text
+#    payload:
+#      - AND,((DOMAIN-KEYWORD,discord),(NOT,((DOMAIN-SUFFIX,ru))))
+#      - AND,((IP-CIDR,34.0.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,34.2.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,34.192.0.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,34.214.0.0/16,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,35.192.0.0/11,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,66.22.192.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,138.128.136.0/21,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,162.158.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,172.64.0.0/13,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+#      - AND,((IP-CIDR,5.200.14.128/25,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+
+
+
+
+
+
+
+# --- ПРАВИЛА МАРШРUTИЗАЦИИ ---
+rules:
+  # ПРАВИЛО №0: Блокировка рекламы и трекеров
+  - GEOSITE,category-ads-all,Блокировка рекламы
+  - RULE-SET,hagezi_pro,Блокировка рекламы
+
+  # ПРАВИЛО №1: Системные правила
+  - GEOIP,private,DIRECT,no-resolve
+
+
+  # ПРАВИЛО №2: Российский трафик
+  - DOMAIN-SUFFIX,avito.ru,DIRECT
+  - DOMAIN-SUFFIX,avito.st,DIRECT
+  - GEOSITE,category-ru,RU трафик
+  - DOMAIN-SUFFIX,ru,RU трафик
+  - DOMAIN-SUFFIX,by,RU трафик
+  - DOMAIN-SUFFIX,xn--p1ai,RU трафик
+  - DOMAIN-SUFFIX,yandex-pogoda.static-storage.net,RU трафик
+  - GEOSITE,category-gov-ru,RU трафик
+  - GEOIP,RU,RU трафик,no-resolve
+  
+
+  # ПРАВИЛО №3: Правила для конкретных сервисов
+  - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
+  - GEOSITE,openai,OpenAI
+  - RULE-SET,discord,Discord
+  - GEOSITE,tidal,Tidal
+  - GEOSITE,linkedin,Linkedin
+  - GEOSITE,facebook,Facebook
+  - GEOSITE,netflix,Netflix
+  - GEOSITE,spotify,Spotify
+  - GEOSITE,instagram,Instagram
+  - GEOSITE,steam,Steam
+  - GEOSITE,youtube,YouTube
+  - GEOSITE,twitter,Twitter
+  - GEOSITE,tiktok,TikTok
+  - GEOSITE,google,Google
+  - GEOSITE,google-gemini,Gemini
+  - GEOSITE,github,GitHub
+  - GEOSITE,microsoft,Microsoft
+  - GEOSITE,telegram,Telegram
+  - GEOIP,telegram,Telegram
+  
+  # Whatsapp // открывам порты xkeen -ap 443,3478,46420
+  - GEOSITE,whatsapp,Whatsapp
+  - SRC-IP-ASN,AS32934,Whatsapp
+  - SRC-IP-ASN,AS11917,Whatsapp
+  - SRC-IP-CIDR,157.240.0.0/16,Whatsapp
+  - SRC-IP-CIDR,69.63.176.0/20,Whatsapp
+  - SRC-IP-CIDR,66.220.144.0/20,Whatsapp
+  - SRC-IP-CIDR,31.13.24.0/21,Whatsapp
+  - SRC-IP-CIDR,31.13.64.0/18,Whatsapp
+  - SRC-IP-CIDR,31.13.80.0/20,Whatsapp
+
+  # ПРАВИЛО №5: Проверки
+  - DOMAIN-SUFFIX,2ip.io,2IP.IO
+  - DOMAIN-SUFFIX,speedtest.net,speedtest.net
+
+  # ПРАВИЛО №6: Необходимые сервисы без выбора
+  - DOMAIN-SUFFIX,nnmclub.to,PROXY
+  - DOMAIN-SUFFIX,rutracker.org,PROXY
+  - DOMAIN-SUFFIX,4pda.to,PROXY
+  - DOMAIN-SUFFIX,habr.com,PROXY
+  - DOMAIN-SUFFIX,flibusta.is,PROXY
+  - DOMAIN-SUFFIX,lostfilm.tv,PROXY
+  - DOMAIN-SUFFIX,kinozal.tv,PROXY
+  - DOMAIN-SUFFIX,amnezia.org,PROXY
+  - DOMAIN-SUFFIX,rockblack.su,PROXY
+  - DOMAIN-SUFFIX,rockblack.pro,PROXY
+  - DOMAIN-SUFFIX,dell.com,PROXY
+  - DOMAIN-SUFFIX,jabra.com,PROXY
+  - DOMAIN-SUFFIX,broadcom.com,PROXY
+  - DOMAIN-SUFFIX,capcut.com,PROXY
+  - DOMAIN-SUFFIX,surveymonkey.com,PROXY
+  - DOMAIN-SUFFIX,citrix.com,PROXY
+  - DOMAIN-SUFFIX,veeam.com,PROXY
+  - DOMAIN-SUFFIX,iherb.com,PROXY
+
+  # ПРАВИЛО №7: Весь остальной трафик
+  - MATCH,DIRECT,Остальной трафик
