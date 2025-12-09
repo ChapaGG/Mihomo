@@ -441,6 +441,9 @@ rules:
   - DOMAIN-SUFFIX,citrix.com,PROXY
   - DOMAIN-SUFFIX,veeam.com,PROXY
   - DOMAIN-SUFFIX,iherb.com,PROXY
+  - DOMAIN-SUFFIX,lichess.org,PROXY
+  - DOMAIN-SUFFIX,gemalto.com,PROXY
+  - DOMAIN-SUFFIX,thalesgroup.com,PROXY
 
   # Весь остальной трафик
   - MATCH,DIRECT,Остальной трафик
