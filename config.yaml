@@ -160,6 +160,13 @@ proxy-groups:
        - DIRECT
     icon: "https://www.svgrepo.com/show/415672/address-location-map.svg"
 
+  - name: 'Other services'
+    type: select
+    proxies:
+       - 'PROXY'
+       - DIRECT
+    icon: "https://www.svgrepo.com/show/415672/address-location-map.svg"
+
   - name: 'Twitter'
     type: select
     proxies:
@@ -423,27 +430,27 @@ rules:
   - DOMAIN-SUFFIX,speedtest.net,speedtest.net
 
   # Необходимые сервисы без выбора
-  - DOMAIN-SUFFIX,nnmclub.to,PROXY
-  - DOMAIN-SUFFIX,rutracker.org,PROXY
-  - DOMAIN-SUFFIX,4pda.to,PROXY
-  - DOMAIN-SUFFIX,habr.com,PROXY
-  - DOMAIN-SUFFIX,flibusta.is,PROXY
-  - DOMAIN-SUFFIX,lostfilm.tv,PROXY
-  - DOMAIN-SUFFIX,kinozal.tv,PROXY
-  - DOMAIN-SUFFIX,amnezia.org,PROXY
-  - DOMAIN-SUFFIX,rockblack.su,PROXY
-  - DOMAIN-SUFFIX,rockblack.pro,PROXY
-  - DOMAIN-SUFFIX,dell.com,PROXY
-  - DOMAIN-SUFFIX,jabra.com,PROXY
-  - DOMAIN-SUFFIX,broadcom.com,PROXY
-  - DOMAIN-SUFFIX,capcut.com,PROXY
-  - DOMAIN-SUFFIX,surveymonkey.com,PROXY
-  - DOMAIN-SUFFIX,citrix.com,PROXY
-  - DOMAIN-SUFFIX,veeam.com,PROXY
-  - DOMAIN-SUFFIX,iherb.com,PROXY
-  - DOMAIN-SUFFIX,lichess.org,PROXY
-  - DOMAIN-SUFFIX,gemalto.com,PROXY
-  - DOMAIN-SUFFIX,thalesgroup.com,PROXY
+  - DOMAIN-SUFFIX,nnmclub.to,Other services
+  - DOMAIN-SUFFIX,rutracker.org,Other services
+  - DOMAIN-SUFFIX,4pda.to,Other services
+#  - DOMAIN-SUFFIX,habr.com,Other services
+  - DOMAIN-SUFFIX,flibusta.is,Other services
+  - DOMAIN-SUFFIX,lostfilm.tv,Other services
+  - DOMAIN-SUFFIX,kinozal.tv,Other services
+  - DOMAIN-SUFFIX,amnezia.org,Other services
+  - DOMAIN-SUFFIX,rockblack.su,Other services
+  - DOMAIN-SUFFIX,rockblack.pro,Other services
+  - DOMAIN-SUFFIX,dell.com,Other services
+  - DOMAIN-SUFFIX,jabra.com,Other services
+  - DOMAIN-SUFFIX,broadcom.com,Other services
+  - DOMAIN-SUFFIX,capcut.com,Other services
+  - DOMAIN-SUFFIX,surveymonkey.com,Other services
+  - DOMAIN-SUFFIX,citrix.com,Other services
+  - DOMAIN-SUFFIX,veeam.com,Other services
+  - DOMAIN-SUFFIX,iherb.com,Other services
+  - DOMAIN-SUFFIX,lichess.org,Other services
+  - DOMAIN-SUFFIX,gemalto.com,Other services
+  - DOMAIN-SUFFIX,thalesgroup.com,Other services
 
   # Весь остальной трафик
   - MATCH,DIRECT,Остальной трафик
