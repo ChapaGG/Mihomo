@@ -416,5 +416,4 @@ rules:
   - DOMAIN-SUFFIX,lichess.org,other
   - DOMAIN-SUFFIX,gemalto.com,other
   - DOMAIN-SUFFIX,thalesgroup.com,other
-
-  - "MATCH,Остальной трафик"
+  - MATCH,DIRECT,Остальной трафик
