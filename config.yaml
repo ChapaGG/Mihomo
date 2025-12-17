@@ -346,7 +346,7 @@ rules:
   # Правила для конкретных сервисов
   - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
   - GEOSITE,openai,OpenAI
-  - RULE-SET,discord,Discord
+  - RULE-SET,discord@classical,Discord
   - GEOSITE,tidal,Tidal
   - GEOSITE,linkedin,Linkedin
   - GEOSITE,facebook,Facebook
