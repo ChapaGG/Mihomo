@@ -8,3 +8,4 @@ AND,((IP-CIDR,34.2.0.0/15,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
 AND,((IP-CIDR,35.192.0.0/11,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
 AND,((IP-CIDR,66.22.192.0/18,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
 AND,((IP-CIDR,138.128.136.0/21,no-resolve),(NETWORK,UDP),(DST-PORT,50000-50100))
+# -> https://github.com/zxc-rv/assets/blob/main/rules/discord.list
