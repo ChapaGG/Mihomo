@@ -11,6 +11,7 @@
 [xkeen_exclude.lst](https://github.com/ChapaGG/Mihomo/blob/main/xkeen_exclude.lst) - для исключения из обработки Xkeen
   * должен находиться /opt/etc/xkeen_exclude.lst
   * в моем случае это решило проблему с голосовым чатом в PUBG
+  * При обновлении XKeen до 1.1.3.9 содержимое файла xkeen_exclude.lst будет перенесено в ip_exclude.lst, Файл xkeen_exclude.lst больше не будет использоваться. (https://t.me/c/2138190368/23/185611)
   
 [update_mihomo_config.sh](https://github.com/ChapaGG/Mihomo/blob/main/update_mihomo_config.sh) - для автообновления конфига с GitHub
   * в процессе написания.
