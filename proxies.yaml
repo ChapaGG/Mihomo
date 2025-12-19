@@ -1,0 +1,30 @@
+proxies:
+- name: 'Первый VPN'
+  type: vless
+  server: xxxxxxxxxx
+  port: 443
+  uuid: xxxxxxxxxx
+  network: tcp
+  udp: true
+  flow: xtls-rprx-vision
+  tls: true
+  servername: xxxxxxxxxx
+  reality-opts:
+    public-key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    short-id: xxxxxxxxxx
+  client-fingerprint: chrome
+
+  - name: 'Второй VPN'
+  type: vless
+  server: xxxxxxxxxx
+  port: 443
+  uuid: xxxxxxxxxx
+  network: tcp
+  udp: true
+  flow: xtls-rprx-vision
+  tls: true
+  servername: xxxxxxxxxx
+  reality-opts:
+    public-key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    short-id: xxxxxxxxxx
+  client-fingerprint: chrome
