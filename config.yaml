@@ -354,6 +354,8 @@ rule-providers:
 #  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
   discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }
   refilter@domain: { <<: *domain, url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/re-filter/domain-rule.mrs }
+  telegram@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs }
+  telegram@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs }
 
 # --- ПРАВИЛА МАРШРУТИЗАЦИИ ---
 rules:
@@ -377,21 +379,24 @@ rules:
   - GEOIP,RU,RU трафик,no-resolve
   
   # Правила для конкретных сервисов
+  - GEOSITE,youtube,YouTube
+  - RULE-SET,discord@classical,Discord
+  - GEOSITE,instagram,Instagram  
+  - GEOSITE,facebook,Facebook
+  - GEOSITE,tiktok,TikTok  
+  - GEOSITE,twitter,Twitter  
+  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram
+#  - GEOSITE,telegram,Telegram
+#  - GEOIP,telegram,Telegram
   - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
   - GEOSITE,openai,OpenAI
-  - RULE-SET,discord@classical,Discord
   - GEOSITE,tidal,Tidal
   - GEOSITE,linkedin,Linkedin
-  - GEOSITE,facebook,Facebook
   - GEOSITE,netflix,Netflix
   - GEOIP,netflix,Netflix
   - GEOSITE,spotify,Spotify
-  - GEOSITE,instagram,Instagram
   - GEOSITE,steam,Steam
   - GEOSITE,apple,Apple
-  - GEOSITE,youtube,YouTube
-  - GEOSITE,twitter,Twitter
-  - GEOSITE,tiktok,TikTok
   - GEOSITE,intel,Intel
   - GEOSITE,notion,Notion
   - GEOSITE,google,Google
@@ -399,8 +404,6 @@ rules:
   - GEOSITE,google-gemini,Gemini
   - GEOSITE,github,GitHub
   - GEOSITE,microsoft,Microsoft
-  - GEOSITE,telegram,Telegram
-  - GEOIP,telegram,Telegram
   - GEOIP,fastly,Fastly
     
   # Roblox открыть порты xkeen -ap 80,443,49152:65535
