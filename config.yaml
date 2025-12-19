@@ -1,22 +1,12 @@
-# --- СВОИ ЛОКАЛЬНЫЕ НАСТРОЙКИ ---
-# --- СПИСОК ПРОКСИ-СЕРВЕРОВ (КЛЮЧИ) ---
-proxies:
-- name: 'PROXY'
-  type: vless
-  server: xxxxxxxxxx
-  port: 443
-  uuid: xxxxxxxxxx
-  network: tcp
-  udp: true
-  flow: xtls-rprx-vision
-  tls: true
-  servername: xxxxxxxxxx
-  reality-opts:
-    public-key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    short-id: xxxxxxxxxx
-  client-fingerprint: chrome
-
-
+# --- СПИСОК ПРОКСИ ПРОВАЙДЕРОВ ---
+proxy-providers:
+  local-proxy:
+    type: file
+    path: ./proxies.yaml			# Relative or absolute path to your file
+    interval: 86400         		# Optional: Update interval in seconds (e.g., once a day)
+    # filter: "keyword"     		# Optional: Filter nodes by name/keyword
+    # exclude-filter: "regex" 		# Optional: Exclude nodes matching a regex
+    
 # --- ОБЩИЕ НАСТРОЙКИ ---
 # --- Базовый конфиг -> https://rockblack.pro/mihomo_generator
 #       WhatsApp: xkeen -ap 80,443,3478,46420
@@ -103,169 +93,207 @@ proxy-groups:
 
   - name: 'Gemini'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/331406/gemini.svg"
 
   - name: 'Speedtest'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/355484/speed.svg"
     
   - name: '18+'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/530357/peach.svg"
 
   - name: 'Apple'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/506958/clo-bowler.svg"
 
   - name: 'Fastly'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/353730/fastly.svg"
     
   - name: 'boosty'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/506958/clo-bowler.svg"
 
   - name: 'Discord'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/331368/discord-v2.svg"
 
   - name: 'Spotify'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/349511/spotify.svg"
     
   - name: 'Roblox'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
-    icon: "https://www.svgrepo.com/show/443377/brand-roblox.svg"
+    include-all: true
+    proxies: [ DIRECT ]
+    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Roblox.png"
 
   - name: 'Linkedin'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/448234/linkedin.svg"
 
   - name: 'Netflix'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/303341/netflix-1-logo.svg"
 
   - name: '2IP.IO'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/415672/address-location-map.svg"
 
   - name: 'Twitter'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/452121/twitter-1.svg"
 
   - name: 'Instagram'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/452229/instagram-1.svg"
 
   - name: 'Google'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/475656/google-color.svg"
 
   - name: 'Google Play'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/353828/google-play-icon.svg"
 
   - name: 'Whatsapp'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/349563/whatsapp.svg"
 
   - name: 'Microsoft'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/452062/microsoft.svg"
 
   - name: 'GitHub'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/475654/github-color.svg"
 
   - name: 'Notion'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/361558/notion-logo.svg"
 
   - name: 'Tidal'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/504993/tidal.svg"
 
   - name: 'Telegram'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/354443/telegram.svg"
 
   - name: 'TikTok'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/349530/tiktok.svg"
 
   - name: 'Twitch'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/448251/twitch.svg"
 
   - name: 'RU трафик'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/508628/flag-ru.svg"
 
   - name: 'Остальной трафик'
     type: select
-    exclude-filter: "(?i)Russia|RU"
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
+    exclude-filter: "(?i)Russia|RU"    
     icon: "https://www.svgrepo.com/show/293111/maps-and-flags-global.svg"
 
   - name: 'Блокировка рекламы'
     type: select
-    proxies: [ REJECT, DIRECT, 'PROXY' ]
+    include-all: true
+    proxies: [ REJECT, DIRECT ]
     icon: "https://www.svgrepo.com/show/300290/sign-roadblock.svg"
 
   - name: 'YouTube'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/13671/youtube.svg"
 
   - name: 'Facebook'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/475647/facebook-color.svg"
 
   - name: 'OpenAI'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/306500/openai.svg"
 
   - name: 'Steam'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/452107/steam.svg"
 
   - name: 'other'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/462111/netflix.svg"
 
-  - name: 'intel'
+  - name: 'Intel'
     type: select
-    proxies: [ 'PROXY', DIRECT ]
+    include-all: true
+    proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/349412/intel.svg"
+    
+  - name: 'QUIC'
+    type: select
+    proxies: [REJECT, DIRECT]
+    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/quic.png"
 
   - name: GLOBAL
     type: select
@@ -276,7 +304,7 @@ proxy-groups:
       - 'Google'
       - 'Google Play'
       - 'Microsoft'
-      - 'intel'
+      - 'Intel'
       - 'OpenAI'
       - 'Gemini'
       - 'Apple'
@@ -300,6 +328,7 @@ proxy-groups:
       - 'Tidal'
       - 'Speedtest'
       - '2IP.IO'
+      - 'QUIC'
       - 'Блокировка рекламы'
       - 'RU трафик'
       - 'other'
@@ -322,7 +351,8 @@ rule-providers:
     path: ./adblock/adlist.mrs
     interval: 86400
 
-  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
+#  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
+  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }
   refilter@domain: { <<: *domain, url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/re-filter/domain-rule.mrs }
 
 # --- ПРАВИЛА МАРШРУТИЗАЦИИ ---
@@ -330,6 +360,7 @@ rules:
   # Блокировки: Реклама
   - GEOSITE,category-ads-all,Блокировка рекламы
   - RULE-SET,hagezi_pro,Блокировка рекламы
+  - AND,((DST-PORT,443),(NETWORK,UDP)),QUIC
 
   # Системные правила
   - GEOIP,private,DIRECT,no-resolve
@@ -361,7 +392,7 @@ rules:
   - GEOSITE,youtube,YouTube
   - GEOSITE,twitter,Twitter
   - GEOSITE,tiktok,TikTok
-  - GEOSITE,intel,intel
+  - GEOSITE,intel,Intel
   - GEOSITE,notion,Notion
   - GEOSITE,google,Google
   - GEOSITE,google-play,Google Play
@@ -418,4 +449,6 @@ rules:
   - DOMAIN-SUFFIX,lichess.org,other
   - DOMAIN-SUFFIX,gemalto.com,other
   - DOMAIN-SUFFIX,thalesgroup.com,other
+
+  # Остальной трафик
   - MATCH,DIRECT,Остальной трафик
