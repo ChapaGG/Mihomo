@@ -1,13 +1,3 @@
-# --- СПИСОК ПРОКСИ ПРОВАЙДЕРОВ ---
-proxy-providers:
-  local-proxy:
-    type: file
-    path: ./proxies.yaml			# Relative or absolute path to your file
-    interval: 86400         		# Optional: Update interval in seconds (e.g., once a day)
-    # filter: "keyword"     		# Optional: Filter nodes by name/keyword
-    # exclude-filter: "regex" 		# Optional: Exclude nodes matching a regex
-    
-# --- ОБЩИЕ НАСТРОЙКИ ---
 # --- Базовый конфиг -> https://rockblack.pro/mihomo_generator
 #       WhatsApp: xkeen -ap 80,443,3478,46420
 #       Telegram: xkeen -ap 80,443,596:599,1400,5222
@@ -19,6 +9,15 @@ proxy-providers:
 # --- Прокси-клиент работает на портах
 #xkeen -ap 80,443,596:599,1400,3478,5222,25565,46420,49152:65535,50000:50030
 
+# --- СПИСОК ПРОКСИ ПРОВАЙДЕРОВ ---
+proxy-providers:
+  local-proxy:
+    type: file
+    path: ./proxies.yaml			# Relative or absolute path to your file
+    interval: 86400         		# Optional: Update interval in seconds (e.g., once a day)
+    # filter: "keyword"     		# Optional: Filter nodes by name/keyword
+    # exclude-filter: "regex" 		# Optional: Exclude nodes matching a regex
+    
 # --- ОБЩИЕ НАСТРОЙКИ ЯДРА ---
 redir-port: 1182
 tproxy-port: 1181
