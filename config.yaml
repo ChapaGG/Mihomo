@@ -423,6 +423,7 @@ rules:
   - DOMAIN-SUFFIX,rutracker.org,other
   - DOMAIN-SUFFIX,4pda.to,other
   - DOMAIN-SUFFIX,habr.com,other
+  - DOMAIN-SUFFIX,habrastorage.org,other
   - DOMAIN-SUFFIX,flibusta.is,other
   - DOMAIN-SUFFIX,lostfilm.tv,other
   - DOMAIN-SUFFIX,kinozal.tv,other
