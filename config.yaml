@@ -365,18 +365,7 @@ rules:
 
   # Системные правила
   - GEOIP,private,DIRECT,no-resolve
-
-  # Российский трафик
-  - DOMAIN-SUFFIX,avito.ru,DIRECT
-  - DOMAIN-SUFFIX,avito.st,DIRECT
-  - GEOSITE,category-ru,RU трафик
-  - DOMAIN-SUFFIX,ru,RU трафик
-  - DOMAIN-SUFFIX,by,RU трафик
-  - DOMAIN-SUFFIX,xn--p1ai,RU трафик
-  - DOMAIN-SUFFIX,yandex-pogoda.static-storage.net,RU трафик
-  - GEOSITE,category-gov-ru,RU трафик
-  - GEOIP,RU,RU трафик,no-resolve
-  
+ 
   # Правила для конкретных сервисов
   - GEOSITE,youtube,YouTube
   - RULE-SET,discord@classical,Discord
@@ -451,6 +440,17 @@ rules:
   - DOMAIN-SUFFIX,lichess.org,other
   - DOMAIN-SUFFIX,gemalto.com,other
   - DOMAIN-SUFFIX,thalesgroup.com,other
+
+  # Российский трафик
+  - DOMAIN-SUFFIX,avito.ru,DIRECT
+  - DOMAIN-SUFFIX,avito.st,DIRECT
+  - GEOSITE,category-ru,RU трафик
+  - DOMAIN-SUFFIX,ru,RU трафик
+  - DOMAIN-SUFFIX,by,RU трафик
+  - DOMAIN-SUFFIX,xn--p1ai,RU трафик
+  - DOMAIN-SUFFIX,yandex-pogoda.static-storage.net,RU трафик
+  - GEOSITE,category-gov-ru,RU трафик
+  - GEOIP,RU,RU трафик,no-resolve
 
   # Остальной трафик
   - MATCH,DIRECT,Остальной трафик
