@@ -5,8 +5,10 @@
 >Данный материал подготовлен в научно-технических и ознакомительных целях. Автор не несёт ответственности за иное использование предоставленного материала. Перед использованием убедитесь, что ваши действия соответствуют законодательству вашей страны. Использование в противоправных целях строго запрещено. Коммерческая эксплуатация предоставленного материала не допускается.
 
 [config.yaml](https://github.com/ChapaGG/Mihomo/blob/main/config.yaml) - основная конфигурация Mihomo
-  * 1-19     строка файла для конфигурации своего подключения с именем 'PROXY'
-  * 20 - ... строка - общая конфигурация
+* нужно расположить в /opt/etc/mihomo/config.yaml
+
+[proxies.yaml](https://github.com/ChapaGG/Mihomo/blob/main/proxies.yaml) - локальная конфигурация всех прокси
+* нужно расположить в /opt/etc/mihomo/proxies.yaml
 
 [xkeen_exclude.lst](https://github.com/ChapaGG/Mihomo/blob/main/xkeen_exclude.lst) - для исключения из обработки Xkeen
   * должен находиться /opt/etc/xkeen_exclude.lst
@@ -15,4 +17,4 @@
   
 [update_mihomo_config.sh](https://github.com/ChapaGG/Mihomo/blob/main/update_mihomo_config.sh) - для автообновления конфига с GitHub
   * в процессе написания.
-  * будет склеивать 2 файла на кинетике ( proxy.yaml + config.yaml )
+  * просто шаблон составленный AI, пока просто набросок
