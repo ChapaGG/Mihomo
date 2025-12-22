@@ -32,7 +32,7 @@ ipv6: false
 external-controller: 0.0.0.0:9090
 external-ui: ./zash
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
-secret: "P@ssw0rd"
+secret: "P@ssw0rd"      # Простой пароль на веб панель
 geodata-mode: true
 profile:
   store-selected: true
@@ -351,7 +351,7 @@ rule-providers:
     interval: 86400
 
 #  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
-  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }
+  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }            # Тестирую такое правило
   refilter@domain: { <<: *domain, url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/re-filter/domain-rule.mrs }
   telegram@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs }
   telegram@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs }
@@ -384,7 +384,7 @@ rules:
   - GEOSITE,facebook,Facebook
   - GEOSITE,tiktok,TikTok  
   - GEOSITE,twitter,Twitter  
-  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram
+  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram    # Тестирую такое правило
 #  - GEOSITE,telegram,Telegram
 #  - GEOIP,telegram,Telegram
   - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
