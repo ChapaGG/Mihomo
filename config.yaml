@@ -145,11 +145,11 @@ proxy-groups:
     proxies: [ DIRECT ]
     icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Roblox.png"
 
-  - name: 'Suppercell'
+  - name: 'Supercell'
     type: select
     include-all: true
     proxies: [ DIRECT ]
-    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Suppercell.png"
+    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Supercell.png"
 
   - name: 'Linkedin'
     type: select
@@ -299,7 +299,7 @@ proxy-groups:
   - name: 'QUIC'
     type: select
     proxies: [REJECT, DIRECT]
-    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/quic.png"
+    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/QUIC.png"
 
   - name: GLOBAL
     type: select
@@ -316,7 +316,7 @@ proxy-groups:
       - 'Apple'
       - 'GitHub'
       - 'Roblox'
-      - 'Suppercell'
+      - 'Supercell'
       - 'Steam'
       - 'Twitter'
       - 'Instagram'
@@ -410,11 +410,11 @@ rules:
   - DOMAIN-SUFFIX,rbxcdn.com,Roblox
   - DOMAIN-SUFFIX,rbxinfra.net,Roblox
   
-  # Suppercell Открыть порт 9339 xkeen -ap 9339
-  - GEOSITE,supercell,Suppercell
-  - DOMAIN-KEYWORD,supercell,Suppercell
-  - AND,((IP-ASN,14618),(DST-PORT,9339)),Suppercell
-  - AND,((IP-ASN,16509),(DST-PORT,9339)),Suppercell
+  # Supercell Открыть порт 9339 xkeen -ap 9339
+  - GEOSITE,supercell,Supercell
+  - DOMAIN-KEYWORD,supercell,Supercell
+  - AND,((IP-ASN,14618),(DST-PORT,9339)),Supercell
+  - AND,((IP-ASN,16509),(DST-PORT,9339)),Supercell
   
   # Whatsapp // открывам порты xkeen -ap 443,3478,46420
   - GEOSITE,whatsapp,Whatsapp
