@@ -1,13 +1,14 @@
 # --- Базовый конфиг -> https://rockblack.pro/mihomo_generator
-#       WhatsApp: xkeen -ap 80,443,3478,46420
-#       Telegram: xkeen -ap 80,443,596:599,1400,5222
-#       Discord: xkeen -ap 80,443,50000:50030
-#       Roblox: xkeen -ap 80,443,49152:65535
-#       xbox cloud gaming: xkeen -ap 80,443,3544
-#       Minecraft Java: xkeen -ap 80,443,25565
+#    +  WhatsApp: xkeen -ap 80,443,3478,46420
+#    +  Telegram: xkeen -ap 80,443,596:599,1400,5222
+#    +  Discord: xkeen -ap 80,443,50000:50030
+#    +  Roblox: xkeen -ap 80,443,49152:65535
+#    +  Supercell: xkeen -ap 80,443,9339
+#    -  xbox cloud gaming: xkeen -ap 80,443,3544
+#    +  Minecraft Java: xkeen -ap 80,443,25565
 
 # --- Прокси-клиент работает на портах
-#xkeen -ap 80,443,596:599,1400,3478,5222,25565,46420,49152:65535,50000:50030
+#xkeen -ap 80,443,596:599,1400,3478,5222,9339,25565,46420,49152:65535,50000:50030
 
 # --- СПИСОК ПРОКСИ ПРОВАЙДЕРОВ ---
 proxy-providers:
@@ -143,6 +144,12 @@ proxy-groups:
     include-all: true
     proxies: [ DIRECT ]
     icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Roblox.png"
+
+  - name: 'Suppercell'
+    type: select
+    include-all: true
+    proxies: [ DIRECT ]
+    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Suppercell.png"
 
   - name: 'Linkedin'
     type: select
@@ -309,6 +316,7 @@ proxy-groups:
       - 'Apple'
       - 'GitHub'
       - 'Roblox'
+      - 'Suppercell'
       - 'Steam'
       - 'Twitter'
       - 'Instagram'
@@ -350,11 +358,12 @@ rule-providers:
     path: ./adblock/adlist.mrs
     interval: 86400
 
-#  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
-  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }            # Тестирую такое правило
+  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
+  discord_tst@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }            # Тестирую такое правило
   refilter@domain: { <<: *domain, url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/re-filter/domain-rule.mrs }
   telegram@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs }
   telegram@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs }
+  youtube@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs }
 
 # --- ПРАВИЛА МАРШРУТИЗАЦИИ ---
 rules:
@@ -367,15 +376,16 @@ rules:
   - GEOIP,private,DIRECT,no-resolve
  
   # Правила для конкретных сервисов
+#  - RULE-SET,youtube@domain,YouTube
   - GEOSITE,youtube,YouTube
-  - RULE-SET,discord@classical,Discord
+  - RULE-SET,discord_tst@classical,Discord
   - GEOSITE,instagram,Instagram  
   - GEOSITE,facebook,Facebook
   - GEOSITE,tiktok,TikTok  
   - GEOSITE,twitter,Twitter  
-  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram    # Тестирую такое правило
-#  - GEOSITE,telegram,Telegram
-#  - GEOIP,telegram,Telegram
+#  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram    # Тестирую такое правило
+  - GEOSITE,telegram,Telegram
+  - GEOIP,telegram,Telegram
   - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
   - GEOSITE,openai,OpenAI
   - GEOSITE,tidal,Tidal
@@ -399,6 +409,12 @@ rules:
   - DOMAIN-SUFFIX,roblox.com,Roblox
   - DOMAIN-SUFFIX,rbxcdn.com,Roblox
   - DOMAIN-SUFFIX,rbxinfra.net,Roblox
+  
+  # Suppercell Открыть порт 9339 xkeen -ap 9339
+  - GEOSITE,supercell,Suppercell
+  - DOMAIN-KEYWORD,supercell,Suppercell
+  - AND,((IP-ASN,14618),(DST-PORT,9339)),Suppercell
+  - AND,((IP-ASN,16509),(DST-PORT,9339)),Suppercell
   
   # Whatsapp // открывам порты xkeen -ap 443,3478,46420
   - GEOSITE,whatsapp,Whatsapp
@@ -428,8 +444,7 @@ rules:
   - DOMAIN-SUFFIX,lostfilm.tv,other
   - DOMAIN-SUFFIX,kinozal.tv,other
   - DOMAIN-SUFFIX,amnezia.org,other
-  - DOMAIN-SUFFIX,rockblack.su,other
-  - DOMAIN-SUFFIX,rockblack.pro,other
+  - DOMAIN-KEYWORD,rockblack,other
   - DOMAIN-SUFFIX,dell.com,other
   - DOMAIN-SUFFIX,jabra.com,other
   - DOMAIN-SUFFIX,broadcom.com,other
