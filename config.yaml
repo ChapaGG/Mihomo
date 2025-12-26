@@ -91,154 +91,153 @@ geox-url:
 # --- ГРУППЫ ПРОКСИ (ПОЛИТИКИ) ---
 proxy-groups:
 
+  - name: 'VPN pass'
+    type: select
+    icon: "https://www.svgrepo.com/show/199673/resize-double-arrows.svg"
+    include-all: true
+
   - name: 'Gemini'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/331406/gemini.svg"
 
   - name: 'Speedtest'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/355484/speed.svg"
     
   - name: '18+'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/530357/peach.svg"
 
   - name: 'Apple'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/506958/clo-bowler.svg"
 
   - name: 'Fastly'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/353730/fastly.svg"
     
-  - name: 'boosty'
-    type: select
-    include-all: true
-    proxies: [ DIRECT ]
-    icon: "https://www.svgrepo.com/show/506958/clo-bowler.svg"
-
   - name: 'Discord'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/331368/discord-v2.svg"
 
   - name: 'Spotify'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/349511/spotify.svg"
     
   - name: 'Roblox'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Roblox.png"
 
   - name: 'Supercell'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Supercell.png"
 
   - name: 'Linkedin'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/448234/linkedin.svg"
 
   - name: 'Netflix'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/303341/netflix-1-logo.svg"
 
   - name: '2IP.IO'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/415672/address-location-map.svg"
 
   - name: 'Twitter'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/452121/twitter-1.svg"
 
   - name: 'Instagram'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/452229/instagram-1.svg"
 
   - name: 'Google'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/475656/google-color.svg"
 
   - name: 'Google Play'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/353828/google-play-icon.svg"
 
   - name: 'Whatsapp'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/349563/whatsapp.svg"
 
   - name: 'Microsoft'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/452062/microsoft.svg"
 
   - name: 'GitHub'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/475654/github-color.svg"
 
   - name: 'Notion'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/361558/notion-logo.svg"
 
   - name: 'Tidal'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/504993/tidal.svg"
 
   - name: 'Telegram'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/354443/telegram.svg"
 
   - name: 'TikTok'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/349530/tiktok.svg"
 
   - name: 'Twitch'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/448251/twitch.svg"
 
   - name: 'RU трафик'
@@ -263,19 +262,19 @@ proxy-groups:
   - name: 'YouTube'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/13671/youtube.svg"
 
   - name: 'Facebook'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/475647/facebook-color.svg"
 
   - name: 'OpenAI'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/306500/openai.svg"
 
   - name: 'Steam'
@@ -284,16 +283,16 @@ proxy-groups:
     proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/452107/steam.svg"
 
-  - name: 'other'
+  - name: 'Other'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/462111/netflix.svg"
 
   - name: 'Intel'
     type: select
     include-all: true
-    proxies: [ DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/349412/intel.svg"
     
   - name: 'QUIC'
@@ -305,7 +304,10 @@ proxy-groups:
     type: select
     hidden: true
     proxies:
+      - 'VPN pass'
+      - '2IP.IO'
       - 'YouTube'
+      - 'Speedtest'
       - 'Netflix'
       - 'Google'
       - 'Google Play'
@@ -331,15 +333,12 @@ proxy-groups:
       - 'Fastly'
       - 'Notion'
       - 'Spotify'
-      - 'boosty'
       - 'Tidal'
-      - 'Speedtest'
-      - '2IP.IO'
-      - 'QUIC'
-      - 'Блокировка рекламы'
+      - 'Other'
       - 'RU трафик'
-      - 'other'
       - 'Остальной трафик'
+      - 'Блокировка рекламы'
+      - 'QUIC'
       - DIRECT
 
 # --- ПРОВАЙДЕРЫ ПРАВИЛ ---
@@ -434,28 +433,28 @@ rules:
   - DOMAIN-SUFFIX,fansly.com,18+
   - DOMAIN-SUFFIX,patreon.com,18+
   
-  # Необходимые сервисы other
-  - DOMAIN-SUFFIX,nnmclub.to,other
-  - DOMAIN-SUFFIX,rutracker.org,other
-  - DOMAIN-SUFFIX,4pda.to,other
-  - DOMAIN-SUFFIX,habr.com,other
-  - DOMAIN-SUFFIX,habrastorage.org,other
-  - DOMAIN-SUFFIX,flibusta.is,other
-  - DOMAIN-SUFFIX,lostfilm.tv,other
-  - DOMAIN-SUFFIX,kinozal.tv,other
-  - DOMAIN-SUFFIX,amnezia.org,other
-  - DOMAIN-KEYWORD,rockblack,other
-  - DOMAIN-SUFFIX,dell.com,other
-  - DOMAIN-SUFFIX,jabra.com,other
-  - DOMAIN-SUFFIX,broadcom.com,other
-  - DOMAIN-SUFFIX,capcut.com,other
-  - DOMAIN-SUFFIX,surveymonkey.com,other
-  - DOMAIN-SUFFIX,citrix.com,other
-  - DOMAIN-SUFFIX,veeam.com,other
-  - DOMAIN-SUFFIX,iherb.com,other
-  - DOMAIN-SUFFIX,lichess.org,other
-  - DOMAIN-SUFFIX,gemalto.com,other
-  - DOMAIN-SUFFIX,thalesgroup.com,other
+  # Необходимые сервисы Other
+  - DOMAIN-SUFFIX,nnmclub.to,Other
+  - DOMAIN-SUFFIX,rutracker.org,Other
+  - DOMAIN-SUFFIX,4pda.to,Other
+  - DOMAIN-SUFFIX,habr.com,Other
+  - DOMAIN-SUFFIX,habrastorage.org,Other
+  - DOMAIN-SUFFIX,flibusta.is,Other
+  - DOMAIN-SUFFIX,lostfilm.tv,Other
+  - DOMAIN-SUFFIX,kinozal.tv,Other
+  - DOMAIN-SUFFIX,amnezia.org,Other
+  - DOMAIN-KEYWORD,rockblack,Other
+  - DOMAIN-SUFFIX,dell.com,Other
+  - DOMAIN-SUFFIX,jabra.com,Other
+  - DOMAIN-SUFFIX,broadcom.com,Other
+  - DOMAIN-SUFFIX,capcut.com,Other
+  - DOMAIN-SUFFIX,surveymonkey.com,Other
+  - DOMAIN-SUFFIX,citrix.com,Other
+  - DOMAIN-SUFFIX,veeam.com,Other
+  - DOMAIN-SUFFIX,iherb.com,Other
+  - DOMAIN-SUFFIX,lichess.org,Other
+  - DOMAIN-SUFFIX,gemalto.com,Other
+  - DOMAIN-SUFFIX,thalesgroup.com,Other
 
   # Российский трафик
   - DOMAIN-SUFFIX,avito.ru,DIRECT
