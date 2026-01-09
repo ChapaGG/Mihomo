@@ -1,14 +1,14 @@
 # --- Базовый конфиг -> https://rockblack.pro/mihomo_generator
-#    +  WhatsApp: xkeen -ap 80,443,3478,46420
+#    +  WhatsApp: xkeen -ap 80,443,3478   ( 46420 не обязательный )
 #    +  Telegram: xkeen -ap 80,443,596:599,1400,5222
-#    +  Discord: xkeen -ap 80,443,50000:50030
+#    +  Discord: xkeen -ap 80,443,2000:2300,19200:19400,50000:50030   ( 50000:50030 включен к Roblox )
 #    +  Roblox: xkeen -ap 80,443,49152:65535
 #    +  Supercell: xkeen -ap 80,443,9339
 #    -  xbox cloud gaming: xkeen -ap 80,443,3544
-#    +  Minecraft Java: xkeen -ap 80,443,25565
+#    -  Minecraft Java: xkeen -ap 80,443,25565
 
 # --- Прокси-клиент работает на портах
-#xkeen -ap 80,443,596:599,1400,3478,5222,9339,25565,46420,49152:65535,50000:50030
+#xkeen -ap 80,443,596:599,1400,2000:2300,3478,5222,8443,9339,19200:19400,49152:65535
 
 # --- СПИСОК ПРОКСИ ПРОВАЙДЕРОВ ---
 proxy-providers:
@@ -246,19 +246,6 @@ proxy-groups:
     proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/508628/flag-ru.svg"
 
-  - name: 'Остальной трафик'
-    type: select
-    include-all: true
-    proxies: [ DIRECT ]
-    exclude-filter: "(?i)Russia|RU"    
-    icon: "https://www.svgrepo.com/show/293111/maps-and-flags-global.svg"
-
-  - name: 'Блокировка рекламы'
-    type: select
-    include-all: true
-    proxies: [ REJECT, DIRECT ]
-    icon: "https://www.svgrepo.com/show/300290/sign-roadblock.svg"
-
   - name: 'YouTube'
     type: select
     include-all: true
@@ -283,17 +270,36 @@ proxy-groups:
     proxies: [ DIRECT ]
     icon: "https://www.svgrepo.com/show/452107/steam.svg"
 
+  - name: 'Intel'
+    type: select
+    include-all: true
+    proxies: [ VPN pass, DIRECT ]
+    icon: "https://www.svgrepo.com/show/349412/intel.svg"
+    
+  - name: Cloudflare
+    type: select
+    icon: "https://www.svgrepo.com/show/353564/cloudflare.svg"
+    include-all: true
+    proxies: [ VPN pass, DIRECT ]
+
   - name: 'Other'
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/462111/netflix.svg"
 
-  - name: 'Intel'
+  - name: 'Остальной трафик'
     type: select
     include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/349412/intel.svg"
+    proxies: [ DIRECT ]
+    exclude-filter: "(?i)Russia|RU"    
+    icon: "https://www.svgrepo.com/show/293111/maps-and-flags-global.svg"
+
+  - name: 'Блокировка рекламы'
+    type: select
+    include-all: true
+    proxies: [ REJECT, DIRECT ]
+    icon: "https://www.svgrepo.com/show/300290/sign-roadblock.svg"
     
   - name: 'QUIC'
     type: select
@@ -308,6 +314,7 @@ proxy-groups:
       - '2IP.IO'
       - 'YouTube'
       - 'Speedtest'
+      - 'Discord'
       - 'Netflix'
       - 'Google'
       - 'Google Play'
@@ -326,10 +333,10 @@ proxy-groups:
       - 'Facebook'
       - 'Twitch'
       - 'TikTok'
-      - 'Discord'
       - 'Telegram'
       - 'Whatsapp'
       - '18+'
+      - 'Cloudflare'
       - 'Fastly'
       - 'Notion'
       - 'Spotify'
@@ -357,8 +364,11 @@ rule-providers:
     path: ./adblock/adlist.mrs
     interval: 86400
 
+  cloudflare@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs }
+  cloudflare@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs }
   discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
   discord_tst@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }            # Тестирую такое правило
+  discord_zxc@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_zxc.list }            # Тестирую такое правило
   refilter@domain: { <<: *domain, url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/re-filter/domain-rule.mrs }
   telegram@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs }
   telegram@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs }
@@ -377,7 +387,8 @@ rules:
   # Правила для конкретных сервисов
 #  - RULE-SET,youtube@domain,YouTube
   - GEOSITE,youtube,YouTube
-  - RULE-SET,discord_tst@classical,Discord
+  - RULE-SET,discord_zxc@classical,Discord
+  - OR,((RULE-SET,cloudflare@domain),(RULE-SET,cloudflare@ipcidr)),Cloudflare
   - GEOSITE,instagram,Instagram  
   - GEOSITE,facebook,Facebook
   - GEOSITE,tiktok,TikTok  
