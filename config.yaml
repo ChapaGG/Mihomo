@@ -1,7 +1,7 @@
 # --- Базовый конфиг -> https://rockblack.pro/mihomo_generator
 #    +  WhatsApp: xkeen -ap 80,443,3478   ( 46420 не обязательный )
 #    +  Telegram: xkeen -ap 80,443,596:599,1400,5222
-#    +  Discord: xkeen -ap 80,443,2000:2300,19200:19400,50000:50030   ( 50000:50030 включен к Roblox )
+#    +  Discord: xkeen -ap 80,443,2000:2300,8443,19200:19400,50000:50030   ( 50000:50030 включен к Roblox )
 #    +  Roblox: xkeen -ap 80,443,49152:65535
 #    +  Supercell: xkeen -ap 80,443,9339
 #    -  xbox cloud gaming: xkeen -ap 80,443,3544
