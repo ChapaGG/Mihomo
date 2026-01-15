@@ -93,7 +93,7 @@ proxy-groups:
 
   - name: 'VPN pass'
     type: select
-    icon: "https://www.svgrepo.com/show/199673/resize-double-arrows.svg"
+    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/resize-double-arrows.svg"
     include-all: true
 
   - name: 'Gemini'
