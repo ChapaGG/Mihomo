@@ -98,6 +98,7 @@ geox-url:
 
 # --- ГРУППЫ ПРОКСИ (ПОЛИТИКИ) ---
 proxy-groups:
+# Функция балансировки нагрузки будет случайным образом выбирать узлы в соответствии с алгоритмом
   - name: "LB"
     type: load-balance
     use:
@@ -105,14 +106,44 @@ proxy-groups:
 #    url: 'https://www.gstatic.com/generate_204'
 #    interval: 300
     #lazy: true
-    strategy: consistent-hashing
-#    strategy: round-robin
+    strategy: consistent-hashing # назначает запросы с одинаковым целевым адресом одному и тому же прокси-узлу в группе стратегий.
+#    strategy: round-robin # распределяет все запросы между разными прокси-узлами в группе стратегий.
+#    strategy: sticky-sessions # запросы с одинаковым исходным адресом и целевым адресом будут направляться к одному и тому же прокси-узлу в группе стратегий, срок действия кэша - 10 минут.
+
+#url-тест будет использовать узел с наименьшей задержкой в соответствии с результатом теста url
+  - name: "URL test"
+    type: url-test
+    use:
+      - proxy_my
+      - proxy_res
+#    proxies:
+#      - Amsterdam
+#      - Stockholm
+#      - Frankfurt
+    # tolerance: 150 # Допустимая погрешность при переключении узлов, измеряется в миллисекундах (мс).
+    # lazy: true
+    # expected-status: 204 #Если код состояния, возвращаемый при проверке работоспособности, не соответствует ожидаемому значению, узел считается недоступным
+    url: "https://cp.cloudflare.com/generate_204"
+    interval: 300
+
+# Если текущий узел не отвечает по таймауту, будет выбран первый доступный узел в порядке списка прокси
+  - name: "fallback"
+    type: fallback
+    use:
+      - proxy_my
+      - proxy_res
+#    proxies:
+#      - Amsterdam
+#      - Stockholm
+#      - Frankfurt
+    url: "https://cp.cloudflare.com/generate_204"
+    interval: 300
 
   - name: 'VPN pass'
     type: select
     icon: "https://www.svgrepo.com/show/199673/resize-double-arrows.svg"
 #    include-all: true
-    proxies: [ LB, DIRECT ]
+    proxies: [ LB, URL test, fallback, DIRECT ]
     use:
       - proxy_my
       - proxy_l
@@ -333,6 +364,8 @@ proxy-groups:
     hidden: true
     proxies:
       - 'LB'
+      - 'URL test'
+      - 'fallback'
       - 'VPN pass'
       - '2IP.IO'
       - 'YouTube'
