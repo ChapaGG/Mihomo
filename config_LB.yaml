@@ -115,28 +115,23 @@ proxy-groups:
     type: url-test
     use:
       - proxy_my
-      - proxy_res
-#    proxies:
-#      - Amsterdam
-#      - Stockholm
-#      - Frankfurt
     # tolerance: 150 # Допустимая погрешность при переключении узлов, измеряется в миллисекундах (мс).
     # lazy: true
     # expected-status: 204 #Если код состояния, возвращаемый при проверке работоспособности, не соответствует ожидаемому значению, узел считается недоступным
-    url: "https://cp.cloudflare.com/generate_204"
+    url: 'https://www.gstatic.com/generate_204'
+#    url: "https://cp.cloudflare.com/generate_204"
     interval: 300
 
 # Если текущий узел не отвечает по таймауту, будет выбран первый доступный узел в порядке списка прокси
   - name: "fallback"
     type: fallback
     use:
-      - proxy_my
+#      - proxy_my
       - proxy_res
-#    proxies:
-#      - Amsterdam
-#      - Stockholm
-#      - Frankfurt
-    url: "https://cp.cloudflare.com/generate_204"
+    proxies:
+      - 'URL test'
+    url: 'https://www.gstatic.com/generate_204'
+#    url: "https://cp.cloudflare.com/generate_204"
     interval: 300
 
   - name: 'VPN pass'
