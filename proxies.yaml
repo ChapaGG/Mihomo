@@ -3,7 +3,7 @@
 #     🇪🇪  Estonia     🇩🇰  Denmark     🇱🇹  Lithuania     🇸🇪  Sweden     🇱🇺  Luxembourg
 
 proxies:
-- name: 'Первый VPN'
+- name: 'Первый конфиг - Vless'
   type: vless
   server: xxxxxxxxxx
   port: 443
@@ -18,17 +18,21 @@ proxies:
     short-id: xxxxxxxxxx
   client-fingerprint: chrome
 
-  - name: 'Второй VPN'
-  type: vless
-  server: xxxxxxxxxx
-  port: 443
-  uuid: xxxxxxxxxx
-  network: tcp
+- name: 'Второй конфиг - SS'
+  type: "ss"
+  server: xxxxxxxxxxxxxxx
+  port: xxxx
+  password: "xxxxxxxxxxxx"
+  cipher: "aes-256-gcm"
+
+- name: 'Третий конфиг - WG'
+  type: wireguard
+  private-key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  server: xxxxxxxxxxxxxx
+  port: xxxxx
+  ip: xxxxxxxxxx
+  dns: ['8.8.8.8']
+  public-key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  allowed-ips: ['0.0.0.0/0']
   udp: true
-  flow: xtls-rprx-vision
-  tls: true
-  servername: xxxxxxxxxx
-  reality-opts:
-    public-key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    short-id: xxxxxxxxxx
-  client-fingerprint: chrome
+  persistent-keepalive: 25
