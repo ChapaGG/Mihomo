@@ -1,3 +1,7 @@
+#	Флаги для названий proxy
+#     🇨🇿  Czech     🇳🇱  Netherlands     🇩🇪  Germany     🇫🇮  Finland     🇨🇭  Switzerland     🇺🇸  United States
+#     🇪🇪  Estonia     🇩🇰  Denmark     🇱🇹  Lithuania     🇸🇪  Sweden     🇱🇺  Luxembourg
+
 proxies:
 - name: 'Первый VPN'
   type: vless
