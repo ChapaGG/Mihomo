@@ -345,12 +345,13 @@ rules:
   - AND,((DST-PORT,443),(NETWORK,UDP)),QUIC
 
   # Системные правила
-  - GEOIP,private,DIRECT,no-resolve
+#  - GEOIP,private,DIRECT,no-resolve
  
   # Правила для конкретных сервисов
   - RULE-SET,youtube@domain,YouTube
 #  - GEOSITE,youtube,YouTube
   - RULE-SET,discord_zxc@classical,Discord
+  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram
   - OR,((RULE-SET,cloudflare@domain),(RULE-SET,cloudflare@ipcidr)),Cloudflare
   - OR,((RULE-SET,amazon@domain),(RULE-SET,amazon@ipcidr)),Amazon
   - RULE-SET,google@domain,Google
@@ -416,6 +417,8 @@ rules:
   - DOMAIN-SUFFIX,kinozal.tv,Other
   - DOMAIN-SUFFIX,amnezia.org,Other
   - DOMAIN-KEYWORD,rockblack,Other
+  - DOMAIN-KEYWORD,rvpn,Other
+  - DOMAIN-KEYWORD,bloody,Other
   - DOMAIN-SUFFIX,dell.com,Other
   - DOMAIN-SUFFIX,jabra.com,Other
   - DOMAIN-SUFFIX,broadcom.com,Other
