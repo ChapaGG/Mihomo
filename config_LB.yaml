@@ -60,37 +60,6 @@ sniffer:
     QUIC:
       ports: [443]
 
-# --- СЕКЦИЯ DNS ---
-dns:
-  enable: true
-  listen: 0.0.0.0:7874
-  ipv6: false
-  cache-algorithm: arc
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  default-nameserver:
-    - 1.1.1.1
-    - 8.8.8.8
-    - 208.67.222.222
-    - 208.67.220.220
-  nameserver:
-    - https://dns10.quad9.net/dns-query
-    - https://dns.aa.net.uk/dns-query
-    - https://doh.opendns.com/dns-query
-    - tls://dns.quad9.net
-    - tls://1.1.1.1
-    - tls://dns.opendns.com
-  nameserver-policy:
-    '+.supercell.net': 'https://dns.google/dns-query'
-    '+.brawlstarsgame.com': 'https://dns.google/dns-query'
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - +.pool.ntp.org
-    - +.msftconnecttest.com
-    - +.3gppnetwork.org
-
 # --- НАСТРОЙКИ GEO-ДАННЫХ ---
 geox-url:
   geosite: "https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat"
@@ -122,23 +91,40 @@ proxy-groups:
 #    url: "https://cp.cloudflare.com/generate_204"
     interval: 300
 
+  - name: "URL test RES"
+    type: url-test
+    use:
+      - proxy_res
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
+
+  - name: "URL test LT"
+    type: url-test
+    use:
+      - proxy_l
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
+
 # Если текущий узел не отвечает по таймауту, будет выбран первый доступный узел в порядке списка прокси
   - name: "fallback"
     type: fallback
     use:
 #      - proxy_my
-      - proxy_res
+#      - proxy_res
+#      - proxy_l
     proxies:
       - 'URL test'
+      - 'URL test RES'
+      - 'URL test LT'
     url: 'https://www.gstatic.com/generate_204'
 #    url: "https://cp.cloudflare.com/generate_204"
     interval: 300
 
   - name: 'VPN pass'
     type: select
-    icon: "https://www.svgrepo.com/show/199673/resize-double-arrows.svg"
+    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/resize-double-arrows.svg"
 #    include-all: true
-    proxies: [ LB, URL test, fallback, DIRECT ]
+    proxies: [ LB, URL test, URL test RES, URL test RES, fallback, DIRECT ]
     use:
       - proxy_my
       - proxy_l
@@ -147,146 +133,146 @@ proxy-groups:
   - name: 'Gemini'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/331406/gemini.svg"
 
   - name: 'Speedtest'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/355484/speed.svg"
-
+    
   - name: '18+'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/530357/peach.svg"
 
   - name: 'Apple'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/506958/clo-bowler.svg"
 
   - name: 'Fastly'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/353730/fastly.svg"
     
   - name: 'Discord'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/331368/discord-v2.svg"
 
   - name: 'Spotify'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/349511/spotify.svg"
     
   - name: 'Roblox'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Roblox.png"
 
   - name: 'Supercell'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Supercell.png"
 
   - name: 'Linkedin'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/448234/linkedin.svg"
 
   - name: 'Netflix'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/303341/netflix-1-logo.svg"
 
   - name: '2IP.IO'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/415672/address-location-map.svg"
 
   - name: 'Twitter'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/452121/twitter-1.svg"
 
   - name: 'Instagram'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/452229/instagram-1.svg"
 
   - name: 'Google'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/475656/google-color.svg"
-
-  - name: 'Google Play'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
-    icon: "https://www.svgrepo.com/show/353828/google-play-icon.svg"
 
   - name: 'Whatsapp'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/349563/whatsapp.svg"
 
   - name: 'Microsoft'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/452062/microsoft.svg"
 
   - name: 'GitHub'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/475654/github-color.svg"
 
   - name: 'Notion'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/361558/notion-logo.svg"
 
   - name: 'Tidal'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/504993/tidal.svg"
 
   - name: 'Telegram'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/354443/telegram.svg"
 
   - name: 'TikTok'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/349530/tiktok.svg"
 
   - name: 'Twitch'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/448251/twitch.svg"
+    
+  - name: Reddit
+    type: select
+    icon: "https://www.svgrepo.com/show/452094/reddit.svg"
+    include-all: true
+    proxies: [ VPN pass, DIRECT ]
 
   - name: 'RU трафик'
     type: select
@@ -297,19 +283,19 @@ proxy-groups:
   - name: 'YouTube'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/13671/youtube.svg"
 
   - name: 'Facebook'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/475647/facebook-color.svg"
 
   - name: 'OpenAI'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/306500/openai.svg"
 
   - name: 'Steam'
@@ -321,19 +307,25 @@ proxy-groups:
   - name: 'Intel'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/349412/intel.svg"
-
+    
   - name: Cloudflare
     type: select
     icon: "https://www.svgrepo.com/show/353564/cloudflare.svg"
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
+    
+  - name: Amazon
+    type: select
+    icon: "https://www.svgrepo.com/show/22029/amazon.svg"
+    include-all: true
+    proxies: [ VPN pass, DIRECT ]
 
   - name: 'Other'
     type: select
     include-all: true
-    proxies: [ VPN pass, LB, DIRECT ]
+    proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/462111/netflix.svg"
 
   - name: 'Остальной трафик'
@@ -348,7 +340,7 @@ proxy-groups:
     include-all: true
     proxies: [ REJECT, DIRECT ]
     icon: "https://www.svgrepo.com/show/300290/sign-roadblock.svg"
-
+    
   - name: 'QUIC'
     type: select
     proxies: [REJECT, DIRECT]
@@ -360,6 +352,8 @@ proxy-groups:
     proxies:
       - 'LB'
       - 'URL test'
+      - 'URL test RES'
+      - 'URL test LT'
       - 'fallback'
       - 'VPN pass'
       - '2IP.IO'
@@ -368,7 +362,6 @@ proxy-groups:
       - 'Discord'
       - 'Netflix'
       - 'Google'
-      - 'Google Play'
       - 'Microsoft'
       - 'Intel'
       - 'OpenAI'
@@ -383,11 +376,13 @@ proxy-groups:
       - 'Linkedin'
       - 'Facebook'
       - 'Twitch'
+      - 'Reddit'
       - 'TikTok'
       - 'Telegram'
       - 'Whatsapp'
       - '18+'
       - 'Cloudflare'
+      - 'Amazon'
       - 'Fastly'
       - 'Notion'
       - 'Spotify'
@@ -407,19 +402,19 @@ anchors:
   a4: &inline { type: inline, behavior: classical }
 
 rule-providers:
-  hagezi_pro:
-    type: http
-    behavior: domain
-    format: mrs
-    url: "https://github.com/zxc-rv/ad-filter/releases/latest/download/adlist.mrs"
-    path: ./adblock/adlist.mrs
-    interval: 86400
-
+  adlist@domain: { <<: *domain, url: https://github.com/zxc-rv/ad-filter/releases/latest/download/adlist.mrs }
+  amazon@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/amazon.mrs }
+  amazon@ipcidr: { <<: *ipcidr, url: https://github.com/PentiumB/CDN-RuleSet/releases/latest/download/amazon.mrs }
   cloudflare@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs }
   cloudflare@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs }
   discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
   discord_tst@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }            # Тестирую такое правило
   discord_zxc@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_zxc.list }            # Тестирую такое правило
+  google@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs }
+  github@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.mrs }
+  meta@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/facebook.mrs }
+  meta@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/facebook.mrs }
+  reddit@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/reddit.mrs }
   refilter@domain: { <<: *domain, url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/re-filter/domain-rule.mrs }
   telegram@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs }
   telegram@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs }
@@ -428,25 +423,26 @@ rule-providers:
 # --- ПРАВИЛА МАРШРУТИЗАЦИИ ---
 rules:
   # Блокировки: Реклама
-  - GEOSITE,category-ads-all,Блокировка рекламы
-  - RULE-SET,hagezi_pro,Блокировка рекламы
+  - RULE-SET,adlist@domain,REJECT # Блокировка рекламы
   - AND,((DST-PORT,443),(NETWORK,UDP)),QUIC
 
   # Системные правила
-  - GEOIP,private,DIRECT,no-resolve
+#  - GEOIP,private,DIRECT,no-resolve
  
   # Правила для конкретных сервисов
-#  - RULE-SET,youtube@domain,YouTube
-  - GEOSITE,youtube,YouTube
+  - RULE-SET,youtube@domain,YouTube
+#  - GEOSITE,youtube,YouTube
   - RULE-SET,discord_zxc@classical,Discord
+  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram
   - OR,((RULE-SET,cloudflare@domain),(RULE-SET,cloudflare@ipcidr)),Cloudflare
+  - OR,((RULE-SET,amazon@domain),(RULE-SET,amazon@ipcidr)),Amazon
+  - RULE-SET,google@domain,Google
+  - RULE-SET,github@domain,GitHub
+
   - GEOSITE,instagram,Instagram  
   - GEOSITE,facebook,Facebook
   - GEOSITE,tiktok,TikTok  
   - GEOSITE,twitter,Twitter  
-#  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram    # Тестирую такое правило
-  - GEOSITE,telegram,Telegram
-  - GEOIP,telegram,Telegram
   - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
   - GEOSITE,openai,OpenAI
   - GEOSITE,tidal,Tidal
@@ -458,10 +454,7 @@ rules:
   - GEOSITE,apple,Apple
   - GEOSITE,intel,Intel
   - GEOSITE,notion,Notion
-  - GEOSITE,google,Google
-  - GEOSITE,google-play,Google Play
   - GEOSITE,google-gemini,Gemini
-  - GEOSITE,github,GitHub
   - GEOSITE,microsoft,Microsoft
   - GEOIP,fastly,Fastly
     
@@ -506,6 +499,8 @@ rules:
   - DOMAIN-SUFFIX,kinozal.tv,Other
   - DOMAIN-SUFFIX,amnezia.org,Other
   - DOMAIN-KEYWORD,rockblack,Other
+  - DOMAIN-KEYWORD,rvpn,Other
+  - DOMAIN-KEYWORD,bloody,Other
   - DOMAIN-SUFFIX,dell.com,Other
   - DOMAIN-SUFFIX,jabra.com,Other
   - DOMAIN-SUFFIX,broadcom.com,Other
