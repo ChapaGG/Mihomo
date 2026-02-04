@@ -98,7 +98,7 @@ proxy-groups:
     url: 'https://www.gstatic.com/generate_204'
     interval: 300
 
-  - name: "URL test LT"
+  - name: "URL test L"
     type: url-test
     use:
       - proxy_l
@@ -115,7 +115,7 @@ proxy-groups:
     proxies:
       - 'URL test'
       - 'URL test RES'
-      - 'URL test LT'
+      - 'URL test L'
     url: 'https://www.gstatic.com/generate_204'
 #    url: "https://cp.cloudflare.com/generate_204"
     interval: 300
@@ -124,7 +124,7 @@ proxy-groups:
     type: select
     icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/resize-double-arrows.svg"
 #    include-all: true
-    proxies: [ LB, URL test, URL test RES, URL test RES, fallback, DIRECT ]
+    proxies: [ LB, URL test, URL test RES, URL test L, fallback, DIRECT ]
     use:
       - proxy_my
       - proxy_l
@@ -353,7 +353,7 @@ proxy-groups:
       - 'LB'
       - 'URL test'
       - 'URL test RES'
-      - 'URL test LT'
+      - 'URL test L'
       - 'fallback'
       - 'VPN pass'
       - '2IP.IO'
