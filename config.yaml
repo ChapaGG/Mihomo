@@ -469,6 +469,7 @@ rules:
   - DOMAIN-SUFFIX,lichess.org,Other
   - DOMAIN-SUFFIX,gemalto.com,Other
   - DOMAIN-SUFFIX,thalesgroup.com,Other
+  - DOMAIN-SUFFIX,leo.leung.xyz,Other
 
   # Российский трафик
   - DOMAIN-SUFFIX,avito.ru,DIRECT
