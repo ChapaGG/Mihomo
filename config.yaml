@@ -1,18 +1,3 @@
-#       Базовый конфиг -> https://generator.rockblack.pro/
-#    +  WhatsApp: xkeen -ap 80,443,3478   ( 46420 не обязательный )
-#    +  Telegram: xkeen -ap 80,443,596:599,1400,5222
-#    +  Discord: xkeen -ap 80,443,2000:2300,8443,19200:19400,50000:50030   ( 30000:65535 Суммируется Discord+Roblox+Arc Raiders )
-#    +  Roblox: xkeen -ap 80,443,49152:65535   ( 30000:65535 Суммируется Discord+Roblox+Arc Raiders )
-#    +  Supercell: xkeen -ap 80,443,9339
-#    -  Arc Raiders: xkeen -ap 30000:50000   ( 30000:65535 Суммируется Discord+Roblox+Arc Raiders )
-#    -  xbox cloud gaming: xkeen -ap 80,443,3544
-#    -  Minecraft Java: xkeen -ap 80,443,25565
-
-# --- Показать текущие порты > xkeen -cp
-# --- Удалить > xkeen -dp 596:599,1400,200.....          ( все кроме 80,443 )
-# --- Включить прокси-клиент для работы на портах
-# > xkeen -ap 80,443,596:599,1400,2000:2300,3478,5222,8443,9339,19200:19400,49152:65535          ( приминимо до xkeen 1.1.3.9 )
-
 # --- СПИСОК ПРОКСИ ПРОВАЙДЕРОВ ---
 proxy-providers:
   local-proxy:
@@ -55,37 +40,6 @@ sniffer:
     QUIC:
       ports: [443]
 
-# --- СЕКЦИЯ DNS ---
-dns:
-  enable: true
-  listen: 0.0.0.0:7874
-  ipv6: false
-  cache-algorithm: arc
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  default-nameserver:
-    - 1.1.1.1
-    - 8.8.8.8
-    - 208.67.222.222
-    - 208.67.220.220
-  nameserver:
-    - https://dns10.quad9.net/dns-query
-    - https://dns.aa.net.uk/dns-query
-    - https://doh.opendns.com/dns-query
-    - tls://dns.quad9.net
-    - tls://1.1.1.1
-    - tls://dns.opendns.com
-  nameserver-policy:
-    '+.supercell.net': 'https://dns.google/dns-query'
-    '+.brawlstarsgame.com': 'https://dns.google/dns-query'
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - +.pool.ntp.org
-    - +.msftconnecttest.com
-    - +.3gppnetwork.org
-
 # --- НАСТРОЙКИ GEO-ДАННЫХ ---
 geox-url:
   geosite: "https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat"
@@ -96,7 +50,7 @@ proxy-groups:
 
   - name: 'VPN pass'
     type: select
-    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/resize-double-arrows.svg"
+    icon: "https://www.svgrepo.com/show/199673/resize-double-arrows.svg"
     include-all: true
 
   - name: 'Gemini'
@@ -189,12 +143,6 @@ proxy-groups:
     proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/475656/google-color.svg"
 
-  - name: 'Google Play'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/353828/google-play-icon.svg"
-
   - name: 'Whatsapp'
     type: select
     include-all: true
@@ -242,6 +190,12 @@ proxy-groups:
     include-all: true
     proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/448251/twitch.svg"
+    
+  - name: Reddit
+    type: select
+    icon: "https://www.svgrepo.com/show/452094/reddit.svg"
+    include-all: true
+    proxies: [ VPN pass, DIRECT ]
 
   - name: 'RU трафик'
     type: select
@@ -284,6 +238,18 @@ proxy-groups:
     icon: "https://www.svgrepo.com/show/353564/cloudflare.svg"
     include-all: true
     proxies: [ VPN pass, DIRECT ]
+    
+  - name: Amazon
+    type: select
+    icon: "https://www.svgrepo.com/show/22029/amazon.svg"
+    include-all: true
+    proxies: [ VPN pass, DIRECT ]
+
+  - name: 'ReFilter'
+    type: select
+    include-all: true
+    proxies: [ VPN pass, DIRECT ]
+    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/ReFilter.png"
 
   - name: 'Other'
     type: select
@@ -320,7 +286,6 @@ proxy-groups:
       - 'Discord'
       - 'Netflix'
       - 'Google'
-      - 'Google Play'
       - 'Microsoft'
       - 'Intel'
       - 'OpenAI'
@@ -335,15 +300,18 @@ proxy-groups:
       - 'Linkedin'
       - 'Facebook'
       - 'Twitch'
+      - 'Reddit'
       - 'TikTok'
       - 'Telegram'
       - 'Whatsapp'
       - '18+'
       - 'Cloudflare'
+      - 'Amazon'
       - 'Fastly'
       - 'Notion'
       - 'Spotify'
       - 'Tidal'
+      - 'ReFilter'
       - 'Other'
       - 'RU трафик'
       - 'Остальной трафик'
@@ -359,19 +327,19 @@ anchors:
   a4: &inline { type: inline, behavior: classical }
 
 rule-providers:
-  hagezi_pro:
-    type: http
-    behavior: domain
-    format: mrs
-    url: "https://github.com/zxc-rv/ad-filter/releases/latest/download/adlist.mrs"
-    path: ./adblock/adlist.mrs
-    interval: 86400
-
+  adlist@domain: { <<: *domain, url: https://github.com/zxc-rv/ad-filter/releases/latest/download/adlist.mrs }
+  amazon@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/amazon.mrs }
+  amazon@ipcidr: { <<: *ipcidr, url: https://github.com/PentiumB/CDN-RuleSet/releases/latest/download/amazon.mrs }
   cloudflare@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs }
   cloudflare@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs }
   discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
   discord_tst@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }            # Тестирую такое правило
   discord_zxc@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_zxc.list }            # Тестирую такое правило
+  google@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs }
+  github@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.mrs }
+  meta@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/facebook.mrs }
+  meta@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/facebook.mrs }
+  reddit@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/reddit.mrs }
   refilter@domain: { <<: *domain, url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/re-filter/domain-rule.mrs }
   telegram@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs }
   telegram@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs }
@@ -380,25 +348,26 @@ rule-providers:
 # --- ПРАВИЛА МАРШРУТИЗАЦИИ ---
 rules:
   # Блокировки: Реклама
-  - GEOSITE,category-ads-all,Блокировка рекламы
-  - RULE-SET,hagezi_pro,Блокировка рекламы
+  - RULE-SET,adlist@domain,REJECT # Блокировка рекламы
   - AND,((DST-PORT,443),(NETWORK,UDP)),QUIC
 
   # Системные правила
-  - GEOIP,private,DIRECT,no-resolve
+#  - GEOIP,private,DIRECT,no-resolve
  
   # Правила для конкретных сервисов
-#  - RULE-SET,youtube@domain,YouTube
-  - GEOSITE,youtube,YouTube
+  - RULE-SET,youtube@domain,YouTube
+#  - GEOSITE,youtube,YouTube
   - RULE-SET,discord_zxc@classical,Discord
+  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram
   - OR,((RULE-SET,cloudflare@domain),(RULE-SET,cloudflare@ipcidr)),Cloudflare
+  - OR,((RULE-SET,amazon@domain),(RULE-SET,amazon@ipcidr)),Amazon
+  - RULE-SET,google@domain,Google
+  - RULE-SET,github@domain,GitHub
+  - RULE-SET,refilter@domain,ReFilter
   - GEOSITE,instagram,Instagram  
   - GEOSITE,facebook,Facebook
   - GEOSITE,tiktok,TikTok  
   - GEOSITE,twitter,Twitter  
-#  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram    # Тестирую такое правило
-  - GEOSITE,telegram,Telegram
-  - GEOIP,telegram,Telegram
   - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
   - GEOSITE,openai,OpenAI
   - GEOSITE,tidal,Tidal
@@ -410,10 +379,7 @@ rules:
   - GEOSITE,apple,Apple
   - GEOSITE,intel,Intel
   - GEOSITE,notion,Notion
-  - GEOSITE,google,Google
-  - GEOSITE,google-play,Google Play
   - GEOSITE,google-gemini,Gemini
-  - GEOSITE,github,GitHub
   - GEOSITE,microsoft,Microsoft
   - GEOIP,fastly,Fastly
     
@@ -446,7 +412,7 @@ rules:
   - DOMAIN-SUFFIX,onlyfans.com,18+
   - DOMAIN-SUFFIX,fansly.com,18+
   - DOMAIN-SUFFIX,patreon.com,18+
-  
+
   # Необходимые сервисы Other
   - DOMAIN-SUFFIX,nnmclub.to,Other
   - DOMAIN-SUFFIX,rutracker.org,Other
@@ -458,6 +424,8 @@ rules:
   - DOMAIN-SUFFIX,kinozal.tv,Other
   - DOMAIN-SUFFIX,amnezia.org,Other
   - DOMAIN-KEYWORD,rockblack,Other
+  - DOMAIN-KEYWORD,rvpn,Other
+  - DOMAIN-KEYWORD,bloody,Other
   - DOMAIN-SUFFIX,dell.com,Other
   - DOMAIN-SUFFIX,jabra.com,Other
   - DOMAIN-SUFFIX,broadcom.com,Other
