@@ -363,7 +363,6 @@ rules:
   - OR,((RULE-SET,amazon@domain),(RULE-SET,amazon@ipcidr)),Amazon
   - RULE-SET,google@domain,Google
   - RULE-SET,github@domain,GitHub
-  - RULE-SET,refilter@domain,ReFilter
   - GEOSITE,instagram,Instagram  
   - GEOSITE,facebook,Facebook
   - GEOSITE,tiktok,TikTok  
@@ -412,6 +411,9 @@ rules:
   - DOMAIN-SUFFIX,onlyfans.com,18+
   - DOMAIN-SUFFIX,fansly.com,18+
   - DOMAIN-SUFFIX,patreon.com,18+
+
+  # Список заблокированных доменов и IP-адресов в РФ
+  - RULE-SET,refilter@domain,ReFilter
 
   # Необходимые сервисы Other
   - DOMAIN-SUFFIX,nnmclub.to,Other
