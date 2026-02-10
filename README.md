@@ -12,9 +12,9 @@
 
 Новые файлы для 1.1.3.9+ должны находиться в папке /opt/etc/xkeen/
   * [port_proxying.lst](https://github.com/ChapaGG/Mihomo/blob/main/port_proxying.lst) -список портов на которых работает Xkeen
-  * [ip_exclude.lst](https://github.com/ChapaGG/Mihomo/blob/main/ip_exclude.lst) - список ip для исключения из обработки Xkeen
   * [port_exclude.lst](https://github.com/ChapaGG/Mihomo/blob/main/port_exclude.lst) - список портов для исключения из обработки Xkeen
-  
+  * [ip_exclude.lst](https://github.com/ChapaGG/Mihomo/blob/main/ip_exclude.lst) - список ip для исключения из обработки Xkeen
+    
 [update_mihomo_config.sh](https://github.com/ChapaGG/Mihomo/blob/main/update_mihomo_config.sh) - для автообновления конфига с GitHub
   * в процессе написания.
   * просто шаблон составленный AI, пока просто набросок
