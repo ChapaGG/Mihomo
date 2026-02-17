@@ -76,13 +76,7 @@ proxy-groups:
     include-all: true
     proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/506958/clo-bowler.svg"
-
-  - name: 'Fastly'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/353730/fastly.svg"
-    
+  
   - name: 'Discord'
     type: select
     include-all: true
@@ -179,6 +173,12 @@ proxy-groups:
     proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/354443/telegram.svg"
 
+  - name: 'Meta'
+    type: select
+    include-all: true
+    proxies: [ VPN pass, DIRECT ]
+    icon: "https://github.com/zxc-rv/assets/raw/main/group-icons/meta.png"
+
   - name: 'TikTok'
     type: select
     include-all: true
@@ -232,19 +232,13 @@ proxy-groups:
     include-all: true
     proxies: [ VPN pass, DIRECT ]
     icon: "https://www.svgrepo.com/show/349412/intel.svg"
-    
-  - name: Cloudflare
-    type: select
-    icon: "https://www.svgrepo.com/show/353564/cloudflare.svg"
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    
-  - name: Amazon
-    type: select
-    icon: "https://www.svgrepo.com/show/22029/amazon.svg"
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
 
+  - name: CDN
+    type: select
+    icon: https://www.svgrepo.com/show/396567/globe-with-meridians.svg
+    include-all: true
+    proxies: [ VPN pass, DIRECT ]
+    
   - name: 'ReFilter'
     type: select
     include-all: true
@@ -303,14 +297,13 @@ proxy-groups:
       - 'Reddit'
       - 'TikTok'
       - 'Telegram'
+      - 'Meta'
       - 'Whatsapp'
       - '18+'
-      - 'Cloudflare'
-      - 'Amazon'
-      - 'Fastly'
       - 'Notion'
       - 'Spotify'
       - 'Tidal'
+      - 'CDN'
       - 'ReFilter'
       - 'Other'
       - 'RU трафик'
@@ -330,11 +323,18 @@ rule-providers:
   adlist@domain: { <<: *domain, url: https://github.com/zxc-rv/ad-filter/releases/latest/download/adlist.mrs }
   amazon@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/amazon.mrs }
   amazon@ipcidr: { <<: *ipcidr, url: https://github.com/PentiumB/CDN-RuleSet/releases/latest/download/amazon.mrs }
+  akamai@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/akamai.mrs }
+  akamai@ipcidr: { <<: *ipcidr, url: https://github.com/PentiumB/CDN-RuleSet/releases/latest/download/akamai.mrs }
   cloudflare@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs }
   cloudflare@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs }
+  digitalocean@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/digitalocean.mrs }
+  digitalocean@ipcidr: { <<: *ipcidr, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/asn/AS14061.mrs }
   discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
   discord_tst@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }            # Тестирую такое правило
   discord_zxc@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_zxc.list }            # Тестирую такое правило
+  scaleway@ipcidr: { <<: *ipcidr, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/asn/AS12876.mrs }
+  fastly@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/fastly.mrs }
+  fastly@ipcidr: { <<: *ipcidr, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/fastly.mrs }
   google@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs }
   github@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.mrs }
   meta@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/facebook.mrs }
@@ -348,40 +348,18 @@ rule-providers:
 # --- ПРАВИЛА МАРШРУТИЗАЦИИ ---
 rules:
   # Блокировки: Реклама
-  - RULE-SET,adlist@domain,REJECT # Блокировка рекламы
+  - RULE-SET,adlist@domain,Блокировка рекламы
   - AND,((DST-PORT,443),(NETWORK,UDP)),QUIC
 
+  # Проверки
+  - DOMAIN-SUFFIX,2ip.io,2IP.IO
+  - GEOSITE,speedtest,Speedtest
+  - GEOSITE,ookla-speedtest,Speedtest
+  - GEOSITE,category-speedtest,Speedtest 
+  
   # Системные правила
 #  - GEOIP,private,DIRECT,no-resolve
- 
-  # Правила для конкретных сервисов
-  - RULE-SET,youtube@domain,YouTube
-#  - GEOSITE,youtube,YouTube
-  - RULE-SET,discord_zxc@classical,Discord
-  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram
-  - OR,((RULE-SET,cloudflare@domain),(RULE-SET,cloudflare@ipcidr)),Cloudflare
-  - OR,((RULE-SET,amazon@domain),(RULE-SET,amazon@ipcidr)),Amazon
-  - RULE-SET,google@domain,Google
-  - RULE-SET,github@domain,GitHub
-  - GEOSITE,instagram,Instagram  
-  - GEOSITE,facebook,Facebook
-  - GEOSITE,tiktok,TikTok  
-  - GEOSITE,twitter,Twitter  
-  - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
-  - GEOSITE,openai,OpenAI
-  - GEOSITE,tidal,Tidal
-  - GEOSITE,linkedin,Linkedin
-  - GEOSITE,netflix,Netflix
-  - GEOIP,netflix,Netflix
-  - GEOSITE,spotify,Spotify
-  - GEOSITE,steam,Steam
-  - GEOSITE,apple,Apple
-  - GEOSITE,intel,Intel
-  - GEOSITE,notion,Notion
-  - GEOSITE,google-gemini,Gemini
-  - GEOSITE,microsoft,Microsoft
-  - GEOIP,fastly,Fastly
-    
+  
   # Roblox открыть порты xkeen -ap 80,443,49152:65535
   - AND,((IP-ASN,22697),(DST-PORT,49152-65535)),Roblox
   - DOMAIN-SUFFIX,roblox.com,Roblox
@@ -400,12 +378,6 @@ rules:
   - IP-ASN,11917,Whatsapp
   - IP-ASN,9002,Whatsapp
 
-  # Проверки
-  - DOMAIN-SUFFIX,2ip.io,2IP.IO
-  - GEOSITE,speedtest,Speedtest
-  - GEOSITE,ookla-speedtest,Speedtest
-  - GEOSITE,category-speedtest,Speedtest 
-
   # Необходимые сервисы с выбором 18+
   - GEOSITE,category-porn,18+
   - DOMAIN-SUFFIX,onlyfans.com,18+
@@ -414,32 +386,64 @@ rules:
 
   # Список заблокированных доменов и IP-адресов в РФ
   - RULE-SET,refilter@domain,ReFilter
+  - OR,((RULE-SET,meta@domain),(RULE-SET,meta@ipcidr,no-resolve)),Meta
+  - OR,((RULE-SET,amazon@domain),(RULE-SET,amazon@ipcidr)),CDN
+  - OR,((RULE-SET,akamai@domain),(RULE-SET,akamai@ipcidr)),CDN
+  - OR,((RULE-SET,cloudflare@domain),(RULE-SET,cloudflare@ipcidr)),CDN
+  - OR,((RULE-SET,digitalocean@domain),(RULE-SET,digitalocean@ipcidr)),CDN
+  - OR,((RULE-SET,fastly@domain),(RULE-SET,fastly@ipcidr)),CDN
+  - RULE-SET,scaleway@ipcidr,CDN
+
+  # Правила для конкретных сервисов
+  - RULE-SET,youtube@domain,YouTube
+  - RULE-SET,discord_zxc@classical,Discord
+  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram
+  - RULE-SET,google@domain,Google
+  - RULE-SET,github@domain,GitHub
+  - RULE-SET,reddit@domain,Reddit
+  - GEOSITE,instagram,Instagram  
+  - GEOSITE,facebook,Facebook
+  - GEOSITE,tiktok,TikTok  
+  - GEOSITE,twitter,Twitter  
+  - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
+  - GEOSITE,openai,OpenAI
+  - GEOSITE,tidal,Tidal
+  - GEOSITE,linkedin,Linkedin
+  - GEOSITE,netflix,Netflix
+  - GEOIP,netflix,Netflix
+  - GEOSITE,spotify,Spotify
+  - GEOSITE,steam,Steam
+  - GEOSITE,apple,Apple
+  - GEOSITE,intel,Intel
+  - GEOSITE,notion,Notion
+  - GEOSITE,google-gemini,Gemini
+  - GEOSITE,microsoft,Microsoft
 
   # Необходимые сервисы Other
-  - DOMAIN-SUFFIX,nnmclub.to,Other
-  - DOMAIN-SUFFIX,rutracker.org,Other
-  - DOMAIN-SUFFIX,4pda.to,Other
-  - DOMAIN-SUFFIX,habr.com,Other
   - DOMAIN-SUFFIX,habrastorage.org,Other
-  - DOMAIN-SUFFIX,flibusta.is,Other
-  - DOMAIN-SUFFIX,lostfilm.tv,Other
-  - DOMAIN-SUFFIX,kinozal.tv,Other
-  - DOMAIN-SUFFIX,amnezia.org,Other
-  - DOMAIN-KEYWORD,rockblack,Other
   - DOMAIN-KEYWORD,rvpn,Other
-  - DOMAIN-KEYWORD,bloody,Other
-  - DOMAIN-SUFFIX,dell.com,Other
-  - DOMAIN-SUFFIX,jabra.com,Other
-  - DOMAIN-SUFFIX,broadcom.com,Other
   - DOMAIN-SUFFIX,capcut.com,Other
-  - DOMAIN-SUFFIX,surveymonkey.com,Other
-  - DOMAIN-SUFFIX,citrix.com,Other
-  - DOMAIN-SUFFIX,veeam.com,Other
-  - DOMAIN-SUFFIX,iherb.com,Other
-  - DOMAIN-SUFFIX,lichess.org,Other
-  - DOMAIN-SUFFIX,gemalto.com,Other
   - DOMAIN-SUFFIX,thalesgroup.com,Other
   - DOMAIN-SUFFIX,leo.leung.xyz,Other
+#  - DOMAIN-KEYWORD,lostfilm,Other              CF
+#  - DOMAIN-SUFFIX,nnmclub.to,Other             CF
+#  - DOMAIN-SUFFIX,rutracker.org,Other          CF
+#  - DOMAIN-SUFFIX,4pda.to,Other                CF
+#  - DOMAIN-SUFFIX,habr.com,Other               Re
+#  - DOMAIN-SUFFIX,flibusta.is,Other			Re
+#  - DOMAIN-SUFFIX,kinozal.tv,Other				CF
+#  - DOMAIN-SUFFIX,amnezia.org,Other			AZ \ CF
+#  - DOMAIN-KEYWORD,rockblack,Other				Re
+#  - DOMAIN-KEYWORD,bloody,Other                AZ
+#  - DOMAIN-SUFFIX,dell.com,Other               Re
+#  - DOMAIN-SUFFIX,jabra.com,Other				CF \ Re
+#  - DOMAIN-SUFFIX,broadcom.com,Other			AZ \ CF
+#  - DOMAIN-SUFFIX,surveymonkey.com,Other       AZ
+#  - DOMAIN-SUFFIX,citrix.com,Other				AZ \ Re
+#  - DOMAIN-SUFFIX,veeam.com,Other				AZ
+#  - DOMAIN-SUFFIX,iherb.com,Other				CF
+#  - DOMAIN-SUFFIX,lichess.org,Other			CF
+#  - DOMAIN-SUFFIX,gemalto.com,Other			AZ
 
   # Российский трафик
   - DOMAIN-SUFFIX,avito.ru,DIRECT
