@@ -8,37 +8,30 @@ proxy-providers:
     # exclude-filter: "regex" 		# Optional: Exclude nodes matching a regex
     
 # --- ОБЩИЕ НАСТРОЙКИ ЯДРА ---
+log-level: silent
 redir-port: 1182
 tproxy-port: 1181
 mixed-port: 1080
+find-process-mode: "off"
 tcp-concurrent: true
 allow-lan: true
 mode: rule
+geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 168
-log-level: silent
 ipv6: false
 external-controller: 0.0.0.0:9090
 external-ui: ./zash
-external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip
 secret: "P@ssw0rd"      # Простой пароль на веб панель
-geodata-mode: true
-profile:
-  store-selected: true
-find-process-mode: "off"
+profile: { store-selected: true }
 
 # --- НАСТРОЙКИ СНИФФЕРА ---
 sniffer:
   enable: true
-  force-dns-mapping: true
   sniff:
     HTTP:
-      ports: [80]
-      override-destination: true
     TLS:
-      ports: [443]
-    QUIC:
-      ports: [443]
 
 # --- НАСТРОЙКИ GEO-ДАННЫХ ---
 geox-url:
@@ -48,190 +41,130 @@ geox-url:
 # --- ГРУППЫ ПРОКСИ (ПОЛИТИКИ) ---
 proxy-groups:
 
-  - name: 'VPN pass'
+  - name: VPN pass
     type: select
-    icon: "https://www.svgrepo.com/show/199673/resize-double-arrows.svg"
+    icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/double-arrows.svg
     include-all: true
 
-  - name: 'Gemini'
+  - name: Speedtest
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/331406/gemini.svg"
-
-  - name: 'Speedtest'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/355484/speed.svg"
+    icon: https://www.svgrepo.com/show/355484/speed.svg
     
-  - name: '18+'
+  - name: Apple
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/530357/peach.svg"
-
-  - name: 'Apple'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/506958/clo-bowler.svg"
+    icon: https://www.svgrepo.com/show/506958/clo-bowler.svg
   
-  - name: 'Discord'
+  - name: Discord
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/331368/discord-v2.svg"
+    icon: https://www.svgrepo.com/show/331368/discord-v2.svg
 
-  - name: 'Spotify'
+  - name: Spotify
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/349511/spotify.svg"
+    icon: https://www.svgrepo.com/show/349511/spotify.svg
     
-  - name: 'Roblox'
+  - name: Roblox
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Roblox.png"
+    icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/Roblox.png
 
-  - name: 'Supercell'
+  - name: Supercell
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/Supercell.png"
+    icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/Supercell.png
 
-  - name: 'Linkedin'
+  - name: 2IP.IO
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/448234/linkedin.svg"
+    icon: https://www.svgrepo.com/show/415672/address-location-map.svg
 
-  - name: 'Netflix'
+  - name: Twitter
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/303341/netflix-1-logo.svg"
+    icon: https://www.svgrepo.com/show/452121/twitter-1.svg
 
-  - name: '2IP.IO'
+  - name: Google
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/415672/address-location-map.svg"
+    icon: https://www.svgrepo.com/show/475656/google-color.svg
 
-  - name: 'Twitter'
+  - name: Whatsapp
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/452121/twitter-1.svg"
+    icon: https://www.svgrepo.com/show/349563/whatsapp.svg
 
-  - name: 'Instagram'
+  - name: GitHub
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/452229/instagram-1.svg"
+    icon: https://www.svgrepo.com/show/475654/github-color.svg
 
-  - name: 'Google'
+  - name: Telegram
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/475656/google-color.svg"
+    icon: https://www.svgrepo.com/show/354443/telegram.svg
 
-  - name: 'Whatsapp'
+  - name: Meta
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/349563/whatsapp.svg"
+    icon: https://github.com/zxc-rv/assets/raw/main/group-icons/meta.png
 
-  - name: 'Microsoft'
+  - name: TikTok
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/452062/microsoft.svg"
+    icon: https://www.svgrepo.com/show/349530/tiktok.svg
 
-  - name: 'GitHub'
+  - name: Twitch
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/475654/github-color.svg"
-
-  - name: 'Notion'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/361558/notion-logo.svg"
-
-  - name: 'Tidal'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/504993/tidal.svg"
-
-  - name: 'Telegram'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/354443/telegram.svg"
-
-  - name: 'Meta'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://github.com/zxc-rv/assets/raw/main/group-icons/meta.png"
-
-  - name: 'TikTok'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/349530/tiktok.svg"
-
-  - name: 'Twitch'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/448251/twitch.svg"
+    icon: https://www.svgrepo.com/show/448251/twitch.svg
     
   - name: Reddit
     type: select
-    icon: "https://www.svgrepo.com/show/452094/reddit.svg"
+    icon: https://www.svgrepo.com/show/452094/reddit.svg
     include-all: true
     proxies: [ VPN pass, DIRECT ]
 
-  - name: 'RU трафик'
+  - name: RU трафик
     type: select
     include-all: true
     proxies: [ DIRECT ]
-    icon: "https://www.svgrepo.com/show/508628/flag-ru.svg"
+    icon: https://www.svgrepo.com/show/508628/flag-ru.svg
 
-  - name: 'YouTube'
+  - name: YouTube
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/13671/youtube.svg"
+    icon: https://www.svgrepo.com/show/13671/youtube.svg
 
-  - name: 'Facebook'
+  - name: OpenAI
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/475647/facebook-color.svg"
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
 
-  - name: 'OpenAI'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/306500/openai.svg"
-
-  - name: 'Steam'
+  - name: Steam
     type: select
     include-all: true
     proxies: [ DIRECT ]
-    icon: "https://www.svgrepo.com/show/452107/steam.svg"
-
-  - name: 'Intel'
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/349412/intel.svg"
+    icon: https://www.svgrepo.com/show/452107/steam.svg
 
   - name: CDN
     type: select
@@ -239,77 +172,61 @@ proxy-groups:
     include-all: true
     proxies: [ VPN pass, DIRECT ]
     
-  - name: 'ReFilter'
+  - name: ReFilter
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/ReFilter.png"
+    icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/ReFilter.png
 
-  - name: 'Other'
+  - name: Other
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: "https://www.svgrepo.com/show/462111/netflix.svg"
+    icon: https://www.svgrepo.com/show/462111/netflix.svg
 
-  - name: 'Остальной трафик'
+  - name: Остальной трафик
     type: select
     include-all: true
     proxies: [ DIRECT ]
     exclude-filter: "(?i)Russia|RU"    
-    icon: "https://www.svgrepo.com/show/293111/maps-and-flags-global.svg"
+    icon: https://www.svgrepo.com/show/293111/maps-and-flags-global.svg
 
-  - name: 'Блокировка рекламы'
+  - name: Реклама
     type: select
     include-all: true
     proxies: [ REJECT, DIRECT ]
-    icon: "https://www.svgrepo.com/show/300290/sign-roadblock.svg"
-    
-  - name: 'QUIC'
-    type: select
-    proxies: [REJECT, DIRECT]
-    icon: "https://github.com/ChapaGG/Mihomo/raw/main/icons/QUIC.png"
+    icon: https://www.svgrepo.com/show/300290/sign-roadblock.svg
 
   - name: GLOBAL
     type: select
     hidden: true
     proxies:
-      - 'VPN pass'
-      - '2IP.IO'
-      - 'YouTube'
-      - 'Speedtest'
-      - 'Discord'
-      - 'Netflix'
-      - 'Google'
-      - 'Microsoft'
-      - 'Intel'
-      - 'OpenAI'
-      - 'Gemini'
-      - 'Apple'
-      - 'GitHub'
-      - 'Roblox'
-      - 'Supercell'
-      - 'Steam'
-      - 'Twitter'
-      - 'Instagram'
-      - 'Linkedin'
-      - 'Facebook'
-      - 'Twitch'
-      - 'Reddit'
-      - 'TikTok'
-      - 'Telegram'
-      - 'Meta'
-      - 'Whatsapp'
-      - '18+'
-      - 'Notion'
-      - 'Spotify'
-      - 'Tidal'
-      - 'CDN'
-      - 'ReFilter'
-      - 'Other'
-      - 'RU трафик'
-      - 'Остальной трафик'
-      - 'Блокировка рекламы'
-      - 'QUIC'
+      - VPN pass
+      - 2IP.IO
+      - YouTube
+      - Speedtest
+      - Discord
+      - Google
+      - OpenAI
+      - Apple
+      - GitHub
+      - Roblox
+      - Supercell
+      - Steam
+      - Twitter
+      - Twitch
+      - Reddit
+      - TikTok
+      - Telegram
+      - Meta
+      - Whatsapp
+      - Spotify
+      - CDN
+      - ReFilter
+      - Other
+      - RU трафик
+      - Остальной трафик
+      - Реклама
       - DIRECT
 
 # --- ПРОВАЙДЕРЫ ПРАВИЛ ---
@@ -321,140 +238,118 @@ anchors:
 
 rule-providers:
   adlist@domain: { <<: *domain, url: https://github.com/zxc-rv/ad-filter/releases/latest/download/adlist.mrs }
-  amazon@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/amazon.mrs }
-  amazon@ipcidr: { <<: *ipcidr, url: https://github.com/PentiumB/CDN-RuleSet/releases/latest/download/amazon.mrs }
   akamai@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/akamai.mrs }
-  akamai@ipcidr: { <<: *ipcidr, url: https://github.com/PentiumB/CDN-RuleSet/releases/latest/download/akamai.mrs }
-  cloudflare@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs }
-  cloudflare@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs }
+  akamai@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/akamai@ipcidr.mrs }
+  amazon@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/amazon.mrs }
+  amazon@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/amazon@ipcidr.mrs }
+  apple@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs }
+  category-ai@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs }
+  cdn77@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/cdn77@ipcidr.mrs }
+  category-ru@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ru.mrs }
+  cloudflare@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs }
+  cloudflare@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/cloudflare@ipcidr.mrs }
   digitalocean@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/digitalocean.mrs }
-  digitalocean@ipcidr: { <<: *ipcidr, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/asn/AS14061.mrs }
-  discord@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord.list }
-  discord_tst@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_tst.list }            # Тестирую такое правило
-  discord_zxc@classical: { <<: *classical, url: https://github.com/ChapaGG/Mihomo/raw/main/rules/discord_zxc.list }            # Тестирую такое правило
-  scaleway@ipcidr: { <<: *ipcidr, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/asn/AS12876.mrs }
+  digitalocean@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/digitalocean@ipcidr.mrs }
+  discord@classical: { <<: *classical, url: https://github.com/zxc-rv/assets/raw/main/rules/discord.list }
   fastly@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/fastly.mrs }
-  fastly@ipcidr: { <<: *ipcidr, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/fastly.mrs }
-  google@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs }
-  github@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.mrs }
-  meta@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/facebook.mrs }
-  meta@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/facebook.mrs }
-  reddit@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/reddit.mrs }
+  fastly@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/fastly@ipcidr.mrs }
+  gcore@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/gcore@ipcidr.mrs }
+  github@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs }
+  google@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs }
+  google@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/google@ipcidr.mrs }
+  hetzner@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/hetzner.mrs }
+  hetzner@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/hetzner@ipcidr.mrs }
+  meta@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/meta.mrs }
+  meta@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/meta@ipcidr.mrs }
+  oracle@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/oracle.mrs }
+  oracle@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/oracle@ipcidr.mrs }
+  ovh@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/ovh@ipcidr.mrs }
+  reddit@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.mrs }
   refilter@domain: { <<: *domain, url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/re-filter/domain-rule.mrs }
-  telegram@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs }
-  telegram@ipcidr: { <<: *ipcidr, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs }
-  youtube@domain: { <<: *domain, url: https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs }
+  roblox@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/roblox.mrs }
+  scaleway@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/scaleway@ipcidr.mrs }
+  spotify@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs }
+  steam@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs }
+  speedtest@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/speedtest.mrs }
+  supercell@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/supercell.mrs }
+  telegram@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs }
+  telegram@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/telegram@ipcidr.mrs }
+  tiktok@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs }
+  twitch@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitch.mrs }
+  twitter@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.mrs }
+  vultr@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/vultr@ipcidr.mrs }
+  youtube@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs }
+  whatsapp@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/whatsapp.mrs }
+  user@classical: # СВОИ ПРАВИЛА
+    type: inline
+    behavior: classical
+    payload: # Типы правил и примеры: https://wiki.metacubex.one/ru/config/rules/
+      - DOMAIN-KEYWORD,rvpn
+      #- DOMAIN-KEYWORD,lichess
+      #- DOMAIN-SUFFIX,habrastorage.org
+      #- DOMAIN-SUFFIX,thalesgroup.com
+      #- DOMAIN-SUFFIX,leo.leung.xyz
+
 
 # --- ПРАВИЛА МАРШРУТИЗАЦИИ ---
 rules:
-  # Блокировки: Реклама
-  - RULE-SET,adlist@domain,Блокировка рекламы
-  - AND,((DST-PORT,443),(NETWORK,UDP)),QUIC
+  # Блокировки
+  - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # Блокировка QUIC
+  - RULE-SET,adlist@domain,Реклама
 
   # Проверки
   - DOMAIN-SUFFIX,2ip.io,2IP.IO
-  - GEOSITE,speedtest,Speedtest
-  - GEOSITE,ookla-speedtest,Speedtest
-  - GEOSITE,category-speedtest,Speedtest 
-  
-  # Системные правила
-#  - GEOIP,private,DIRECT,no-resolve
+  - RULE-SET,speedtest@domain,Speedtest
   
   # Roblox открыть порты xkeen -ap 80,443,49152:65535
+  - RULE-SET,roblox@domain,Roblox
   - AND,((IP-ASN,22697),(DST-PORT,49152-65535)),Roblox
-  - DOMAIN-SUFFIX,roblox.com,Roblox
-  - DOMAIN-SUFFIX,rbxcdn.com,Roblox
-  - DOMAIN-SUFFIX,rbxinfra.net,Roblox
   
   # Supercell Открыть порт 9339 xkeen -ap 9339
-  - GEOSITE,supercell,Supercell
-  - DOMAIN-KEYWORD,supercell,Supercell
+  - RULE-SET,supercell@domain,Supercell
   - AND,((IP-ASN,14618),(DST-PORT,9339)),Supercell
   - AND,((IP-ASN,16509),(DST-PORT,9339)),Supercell
   
   # Whatsapp // открывам порты xkeen -ap 443,3478,46420
-  - GEOSITE,whatsapp,Whatsapp
+  - RULE-SET,whatsapp@domain,Whatsapp
   - IP-ASN,32934,Whatsapp
   - IP-ASN,11917,Whatsapp
   - IP-ASN,9002,Whatsapp
 
-  # Необходимые сервисы с выбором 18+
-  - GEOSITE,category-porn,18+
-  - DOMAIN-SUFFIX,onlyfans.com,18+
-  - DOMAIN-SUFFIX,fansly.com,18+
-  - DOMAIN-SUFFIX,patreon.com,18+
-
-  # Список заблокированных доменов и IP-адресов в РФ
-  - RULE-SET,refilter@domain,ReFilter
+  # Правила для конкретных сервисов
+  - RULE-SET,category-ai@domain,OpenAI
+  - RULE-SET,steam@domain,Steam
+  - RULE-SET,spotify@domain,Spotify
+  - RULE-SET,reddit@domain,Reddit
+  - RULE-SET,youtube@domain,YouTube
+  - RULE-SET,discord@classical,Discord
+  - RULE-SET,tiktok@domain,TikTok
+  - RULE-SET,twitch@domain,Twitch
+  - RULE-SET,twitter@domain,Twitter
   - OR,((RULE-SET,meta@domain),(RULE-SET,meta@ipcidr,no-resolve)),Meta
+  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram
+  - RULE-SET,apple@domain,Apple
+  - RULE-SET,github@domain,GitHub
+  - OR,((RULE-SET,google@domain),(RULE-SET,google@ipcidr)),Google
+  - RULE-SET,refilter@domain,ReFilter
+  - RULE-SET,user@classical,Other
+
+  # Российский трафик
+  - RULE-SET,category-ru@domain,RU трафик
+
+  # CDN
   - OR,((RULE-SET,amazon@domain),(RULE-SET,amazon@ipcidr)),CDN
   - OR,((RULE-SET,akamai@domain),(RULE-SET,akamai@ipcidr)),CDN
   - OR,((RULE-SET,cloudflare@domain),(RULE-SET,cloudflare@ipcidr)),CDN
   - OR,((RULE-SET,digitalocean@domain),(RULE-SET,digitalocean@ipcidr)),CDN
   - OR,((RULE-SET,fastly@domain),(RULE-SET,fastly@ipcidr)),CDN
+  - OR,((RULE-SET,oracle@domain),(RULE-SET,oracle@ipcidr)),CDN
+  - OR,((RULE-SET,hetzner@domain),(RULE-SET,hetzner@ipcidr)),CDN
   - RULE-SET,scaleway@ipcidr,CDN
-
-  # Правила для конкретных сервисов
-  - RULE-SET,youtube@domain,YouTube
-  - RULE-SET,discord_zxc@classical,Discord
-  - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram
-  - RULE-SET,google@domain,Google
-  - RULE-SET,github@domain,GitHub
-  - RULE-SET,reddit@domain,Reddit
-  - GEOSITE,instagram,Instagram  
-  - GEOSITE,facebook,Facebook
-  - GEOSITE,tiktok,TikTok  
-  - GEOSITE,twitter,Twitter  
-  - OR,((DOMAIN-SUFFIX,gql.twitch.tv),(DOMAIN-SUFFIX,usher.ttvnw.net)),Twitch
-  - GEOSITE,openai,OpenAI
-  - GEOSITE,tidal,Tidal
-  - GEOSITE,linkedin,Linkedin
-  - GEOSITE,netflix,Netflix
-  - GEOIP,netflix,Netflix
-  - GEOSITE,spotify,Spotify
-  - GEOSITE,steam,Steam
-  - GEOSITE,apple,Apple
-  - GEOSITE,intel,Intel
-  - GEOSITE,notion,Notion
-  - GEOSITE,google-gemini,Gemini
-  - GEOSITE,microsoft,Microsoft
-
-  # Необходимые сервисы Other
-  - DOMAIN-SUFFIX,habrastorage.org,Other
-  - DOMAIN-KEYWORD,rvpn,Other
-  - DOMAIN-SUFFIX,capcut.com,Other
-  - DOMAIN-SUFFIX,thalesgroup.com,Other
-  - DOMAIN-SUFFIX,leo.leung.xyz,Other
-  - DOMAIN-KEYWORD,lichess,Other
-#  - DOMAIN-KEYWORD,lostfilm,Other              CF
-#  - DOMAIN-SUFFIX,nnmclub.to,Other             CF
-#  - DOMAIN-SUFFIX,rutracker.org,Other          CF
-#  - DOMAIN-SUFFIX,4pda.to,Other                CF
-#  - DOMAIN-SUFFIX,habr.com,Other               Re
-#  - DOMAIN-SUFFIX,flibusta.is,Other			Re
-#  - DOMAIN-SUFFIX,kinozal.tv,Other				CF
-#  - DOMAIN-SUFFIX,amnezia.org,Other			AZ \ CF
-#  - DOMAIN-KEYWORD,rockblack,Other				Re
-#  - DOMAIN-KEYWORD,bloody,Other                AZ
-#  - DOMAIN-SUFFIX,dell.com,Other               Re
-#  - DOMAIN-SUFFIX,jabra.com,Other				CF \ Re
-#  - DOMAIN-SUFFIX,broadcom.com,Other			AZ \ CF
-#  - DOMAIN-SUFFIX,surveymonkey.com,Other       AZ
-#  - DOMAIN-SUFFIX,citrix.com,Other				AZ \ Re
-#  - DOMAIN-SUFFIX,veeam.com,Other				AZ
-#  - DOMAIN-SUFFIX,iherb.com,Other				CF
-#  - DOMAIN-SUFFIX,gemalto.com,Other			AZ
-
-  # Российский трафик
-  - DOMAIN-SUFFIX,avito.ru,DIRECT
-  - DOMAIN-SUFFIX,avito.st,DIRECT
-  - GEOSITE,category-ru,RU трафик
-  - DOMAIN-SUFFIX,ru,RU трафик
-  - DOMAIN-SUFFIX,by,RU трафик
-  - DOMAIN-SUFFIX,xn--p1ai,RU трафик
-  - DOMAIN-SUFFIX,yandex-pogoda.static-storage.net,RU трафик
-  - GEOSITE,category-gov-ru,RU трафик
-  - GEOIP,RU,RU трафик,no-resolve
-
+  - RULE-SET,ovh@ipcidr,CDN
+  - RULE-SET,vultr@ipcidr,CDN
+  - RULE-SET,gcore@ipcidr,CDN
+  - RULE-SET,cdn77@ipcidr,CDN
+  
   # Остальной трафик
   - MATCH,DIRECT,Остальной трафик
