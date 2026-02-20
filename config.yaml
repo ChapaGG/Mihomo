@@ -2,10 +2,10 @@
 proxy-providers:
   local-proxy:
     type: file
-    path: ./proxies.yaml			# Relative or absolute path to your file
+    path: ./proxies.yaml			  # Relative or absolute path to your file
     interval: 86400         		# Optional: Update interval in seconds (e.g., once a day)
     # filter: "keyword"     		# Optional: Filter nodes by name/keyword
-    # exclude-filter: "regex" 		# Optional: Exclude nodes matching a regex
+    # exclude-filter: "regex" 	# Optional: Exclude nodes matching a regex
     
 # --- ОБЩИЕ НАСТРОЙКИ ЯДРА ---
 log-level: silent
@@ -285,6 +285,7 @@ rule-providers:
     behavior: classical
     payload: # Типы правил и примеры: https://wiki.metacubex.one/ru/config/rules/
       - DOMAIN-KEYWORD,rvpn
+      - IP-ASN,1273   # Telegram, но его нет в zkeenip
       #- DOMAIN-KEYWORD,lichess
       #- DOMAIN-SUFFIX,habrastorage.org
       #- DOMAIN-SUFFIX,thalesgroup.com
