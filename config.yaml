@@ -1,18 +1,24 @@
-# --- СПИСОК ПРОКСИ ПРОВАЙДЕРОВ ---
+# --- СПИСОК ПРОКСИ ПРОВАЙДЕРОВ --- 
 proxy-providers:
-  local-proxy:
+  proxy_main:
     type: file
     path: ./proxies.yaml			  # Relative or absolute path to your file
     interval: 86400         		# Optional: Update interval in seconds (e.g., once a day)
-    # filter: "keyword"     		# Optional: Filter nodes by name/keyword
-    # exclude-filter: "regex" 	# Optional: Exclude nodes matching a regex
-    
+    exclude-filter: ".*_R.*"    # Optional: Exclude nodes matching a regex
+ 
+  proxy_reserve:
+    type: file
+    path: ./proxies.yaml			  # Relative or absolute path to your file
+    interval: 86400         		# Optional: Update interval in seconds (e.g., once a day)
+    filter: "_R"                # Optional: Filter nodes by name/keyword
+
 # --- ОБЩИЕ НАСТРОЙКИ ЯДРА ---
 log-level: silent
-redir-port: 1182
-tproxy-port: 1181
+redir-port: 1082
+tproxy-port: 1081
 mixed-port: 1080
 find-process-mode: "off"
+unified-delay: true
 tcp-concurrent: true
 allow-lan: true
 mode: rule
@@ -41,10 +47,35 @@ geox-url:
 # --- ГРУППЫ ПРОКСИ (ПОЛИТИКИ) ---
 proxy-groups:
 
+  - name: Main
+    type: url-test
+    icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/next_green.svg
+    use:
+      - proxy_main
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
+    tolerance: 150  # Допустимая погрешность при переключении узлов, измеряется в миллисекундах (мс).
+    hidden: true
+
+  - name: Reserve
+    type: url-test
+    icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/next_yellow.svg
+    use:
+      - proxy_reserve
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
+    tolerance: 150  # Допустимая погрешность при переключении узлов, измеряется в миллисекундах (мс).
+    hidden: true
+
   - name: VPN pass
-    type: select
+    type: url-test
     icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/double-arrows.svg
-    include-all: true
+    proxies: [ Main, Reserve ]
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
+    #lazy: true
+    timeout: 5000
+    max-failed-times: 5
 
   - name: Speedtest
     type: select
