@@ -2,15 +2,15 @@
 proxy-providers:
   proxy_main:
     type: file
-    path: ./proxies.yaml			  # Relative or absolute path to your file
+    path: ./proxies.yaml			# Relative or absolute path to your file
     interval: 86400         		# Optional: Update interval in seconds (e.g., once a day)
-    exclude-filter: ".*_R.*"    # Optional: Exclude nodes matching a regex
+    exclude-filter: ".*_R.*"        # Optional: Exclude nodes matching a regex
  
   proxy_reserve:
     type: file
-    path: ./proxies.yaml			  # Relative or absolute path to your file
+    path: ./proxies.yaml			# Relative or absolute path to your file
     interval: 86400         		# Optional: Update interval in seconds (e.g., once a day)
-    filter: "_R"                # Optional: Filter nodes by name/keyword
+    filter: "_R"                    # Optional: Filter nodes by name/keyword
 
 # --- ОБЩИЕ НАСТРОЙКИ ЯДРА ---
 log-level: silent
@@ -68,14 +68,14 @@ proxy-groups:
     hidden: true
 
   - name: VPN pass
-    type: url-test
+    type: fallback 
     icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/double-arrows.svg
     proxies: [ Main, Reserve ]
     url: 'https://www.gstatic.com/generate_204'
     interval: 300
     #lazy: true
-    timeout: 5000
-    max-failed-times: 5
+    #timeout: 5000
+    #max-failed-times: 5
 
   - name: Speedtest
     type: select
