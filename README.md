@@ -13,7 +13,7 @@
 
   
 [config.json](https://github.com/ChapaGG/Mihomo/blob/main/config.json) - конфиг для панели [Xkeen UI 0.6.2+](https://github.com/zxc-rv/XKeen-UI)
-* нужно расположить в /opt/share/www/XKeen-UI/
+* нужно расположить в /opt/share/www/XKeen-UI/config.json
 
 
 Новые файлы для 1.1.3.9+ должны находиться в папке /opt/etc/xkeen/
