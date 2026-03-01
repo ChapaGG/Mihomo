@@ -1,0 +1,11 @@
+{
+  "append_config_paths": {
+    "mihomo": ["/opt/etc/mihomo/proxies.yaml"],
+    "xray": ["/opt/etc/xray/something.json"]
+  },
+  "gui": {
+    "auto_apply": false,
+    "log": false,
+    "routing": false
+  }
+}
