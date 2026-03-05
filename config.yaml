@@ -1,4 +1,4 @@
-# --- СПИСОК ПРОКСИ ПРОВАЙДЕРОВ --- 
+# --- СПИСОК ПРОКСИ ПРОВАЙДЕРОВ ---
 proxy-providers:
   proxy_main:
     type: file
@@ -48,7 +48,7 @@ geox-url:
 proxy-groups:
 
   - name: Main
-    type: url-test
+    type: fallback
     icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/next_green.svg
     use:
       - proxy_main
@@ -58,7 +58,7 @@ proxy-groups:
     hidden: true
 
   - name: Reserve
-    type: url-test
+    type: fallback
     icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/next_yellow.svg
     use:
       - proxy_reserve
@@ -348,6 +348,9 @@ rules:
   - IP-ASN,11917,Whatsapp
   - IP-ASN,9002,Whatsapp
 
+  # Российский трафик
+  - RULE-SET,category-ru@domain,RU трафик
+
   # Правила для конкретных сервисов
   - RULE-SET,category-ai@domain,OpenAI
   - RULE-SET,steam@domain,Steam
@@ -365,9 +368,6 @@ rules:
   - OR,((RULE-SET,google@domain),(RULE-SET,google@ipcidr)),Google
   - RULE-SET,refilter@domain,ReFilter
   - RULE-SET,user@classical,Other
-
-  # Российский трафик
-  - RULE-SET,category-ru@domain,RU трафик
 
   # CDN
   - OR,((RULE-SET,amazon@domain),(RULE-SET,amazon@ipcidr)),CDN
