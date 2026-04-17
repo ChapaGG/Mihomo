@@ -33,11 +33,7 @@ secret: "P@ssw0rd"      # Простой пароль на веб панель
 profile: { store-selected: true }
 
 # --- НАСТРОЙКИ СНИФФЕРА ---
-sniffer:
-  enable: true
-  sniff:
-    HTTP:
-    TLS:
+sniffer: { enable: true, sniff: { HTTP: { ports: [80, 8080] }, TLS: { ports: [443, 8443] } }, skip-dst-address: [rule-set:telegram@ipcidr] }
 
 # --- НАСТРОЙКИ GEO-ДАННЫХ ---
 geox-url:
@@ -317,11 +313,15 @@ rule-providers:
     behavior: classical
     payload: # Типы правил и примеры: https://wiki.metacubex.one/ru/config/rules/
       - DOMAIN-KEYWORD,rvpn
-      - IP-ASN,1273   # Telegram, но его нет в zkeenip
+      #- IP-ASN,1273   # Telegram, но его нет в zkeenip
       #- DOMAIN-KEYWORD,lichess
       #- DOMAIN-SUFFIX,habrastorage.org
       #- DOMAIN-SUFFIX,thalesgroup.com
-      #- DOMAIN-SUFFIX,leo.leung.xyz
+      - IP-ASN,36131                # imo.im
+      - DOMAIN-SUFFIX,imo.im        # imo.im
+      - DOMAIN-KEYWORD,imoim        # imo.im
+      - DOMAIN-KEYWORD,imoapp       # imo.im
+      - DOMAIN-KEYWORD,imofriends   # imo.im
 
 
 # --- ПРАВИЛА МАРШРУТИЗАЦИИ ---
