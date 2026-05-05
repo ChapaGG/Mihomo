@@ -83,7 +83,7 @@ proxy-groups:
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: https://www.svgrepo.com/show/506958/clo-bowler.svg
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
   
   - name: Discord
     type: select
@@ -125,7 +125,7 @@ proxy-groups:
     type: select
     include-all: true
     proxies: [ VPN pass, DIRECT ]
-    icon: https://www.svgrepo.com/show/475656/google-color.svg
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
 
   - name: Whatsapp
     type: select
