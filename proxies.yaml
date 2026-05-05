@@ -1,8 +1,8 @@
 #	Флаги для названий proxy
 #     🇨🇿  Czech     🇳🇱  Netherlands   🇩🇪  Germany      🇫🇮  Finland     🇨🇭  Switzerland     🇺🇸  United States
-#     🇪🇪  Estonia   🇩🇰  Denmark       🇱🇹  Lithuania    🇸🇪  Sweden      🇱🇺  Luxembourg
-#    Строчка в имени прокси _R добавляет эту прокси в резервный пулл "Reserve". Пример: - name: 'Второй конфиг - SS_R'
+#     🇪🇪  Estonia   🇩🇰  Denmark       🇱🇹  Lithuania    🇸🇪  Sweden      🇱🇺  Luxembourg		🇰🇿  Kazakhstan      🇧🇬  Bulgaria
 
+#    Строчка в имени прокси _R добавляет эту прокси в резервный пулл "Reserve". Пример: - name: 'Второй конфиг - SS_R'
 proxies:
 - name: 'Первый конфиг - Vless'
   type: vless
