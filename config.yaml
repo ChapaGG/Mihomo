@@ -17,6 +17,7 @@ log-level: silent
 allow-lan: true
 redir-port: 5000
 tproxy-port: 5001
+mixed-port: 5080
 routing-mark: 255
 find-process-mode: off
 unified-delay: true
@@ -44,12 +45,13 @@ geox-url:
 proxy-groups:
 
   - name: Main
-    type: fallback
+    type: url-test
     icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/next_green.svg
     use:
       - proxy_main
     url: 'https://www.gstatic.com/generate_204'
     interval: 300
+    max-failed-times: 3
     tolerance: 150  # Допустимая погрешность при переключении узлов, измеряется в миллисекундах (мс).
     hidden: true
 
@@ -60,6 +62,7 @@ proxy-groups:
       - proxy_reserve
     url: 'https://www.gstatic.com/generate_204'
     interval: 300
+    max-failed-times: 3
     tolerance: 150  # Допустимая погрешность при переключении узлов, измеряется в миллисекундах (мс).
     hidden: true
 
@@ -120,6 +123,12 @@ proxy-groups:
     include-all: true
     proxies: [ VPN pass, DIRECT ]
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
+
+  - name: Wardogs
+    type: select
+    include-all: true
+    proxies: [ VPN pass, DIRECT ]
+    icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/Wardogs.png
 
   - name: Whatsapp
     type: select
@@ -239,6 +248,7 @@ proxy-groups:
       - TikTok
       - Telegram
       - Meta
+      - Wardogs
       - Whatsapp
       - Spotify
       - CDN
@@ -305,12 +315,15 @@ rule-providers:
     behavior: classical
     payload: # Типы правил и примеры: https://wiki.metacubex.one/ru/config/rules/
       - DOMAIN-KEYWORD,rvpn
-      - IP-ASN,36131                # imo.im
-      - DOMAIN-SUFFIX,imo.im        # imo.im
-      - DOMAIN-KEYWORD,imoim        # imo.im
-      - DOMAIN-KEYWORD,imoapp       # imo.im
-      - DOMAIN-KEYWORD,imofriends   # imo.im
-      - DOMAIN-KEYWORD,yummyani     # anime
+      - IP-ASN,36131                              # imo.im
+      - DOMAIN-SUFFIX,imo.im                      # imo.im
+      - DOMAIN-KEYWORD,imoim                      # imo.im
+      - DOMAIN-KEYWORD,imoapp                     # imo.im
+      - DOMAIN-KEYWORD,imofriends                 # imo.im
+      - DOMAIN-KEYWORD,yummyani                   # anime
+      - DOMAIN-SUFFIX,es-pio.net                  # arc raiders
+      - DOMAIN-KEYWORD,embark                     # arc raiders
+      - DOMAIN-KEYWORD,vivox                      # arc raiders
 
   user_ru@classical: # Свои правила для RU трафик
     type: inline
@@ -319,11 +332,33 @@ rule-providers:
       - DOMAIN-SUFFIX,playbattlegrounds.com,RU трафик      #Games PUBG
       - DOMAIN-SUFFIX,majestic-files.com,RU трафик         #Games GTA5
       - DOMAIN-SUFFIX,sentry-majestic.com,RU трафик        #Games GTA5
+      #- IP-CIDR,103.10.124.0/23 
       #- IP-ASN,1273   # Telegram, но его нет в zkeenip
       #- DOMAIN-KEYWORD,lichess
       #- DOMAIN-SUFFIX,habrastorage.org
-      #- DOMAIN-SUFFIX,thalesgroup.com
 
+  user_wardogs@classical: # Свои правила для Wardogs (заготовка взятая с запрета, на xkeen пока не работает )
+    type: inline
+    behavior: classical
+    payload:
+      #- DOMAIN-KEYWORD,wardogs
+      #- DOMAIN-KEYWORD,bulkhead
+      #- DOMAIN-SUFFIX,firstlook.gg
+      #- DOMAIN-SUFFIX,pragmaengine.com
+      #- DOMAIN-SUFFIX,team17.com
+      #- DOMAIN-SUFFIX,api.epicgames.dev
+      #- IP-CIDR,162.254.192.0/20,no-resolve
+      #- IP-CIDR,155.133.224.0/19,no-resolve
+      #- IP-CIDR,103.28.54.0/24,no-resolve
+      #- IP-CIDR,103.10.124.0/23,no-resolve
+      #- IP-CIDR,146.66.152.36/32,no-resolve
+      #- IP-CIDR,143.244.45.177/32,no-resolve
+      #- IP-CIDR,205.196.6.149/32,no-resolve
+      #- IP-CIDR,45.121.184.6/32,no-resolve
+      #- IP-CIDR,104.18.29.123/32,no-resolve
+      #- IP-CIDR,150.171.109.51/32,no-resolve
+
+   
 # --- ПРАВИЛА МАРШРУТИЗАЦИИ ---
 rules:
   # Блокировки
@@ -333,6 +368,9 @@ rules:
   # Проверки
   - DOMAIN-SUFFIX,2ip.io,2IP.IO
   - RULE-SET,speedtest@domain,Speedtest
+  
+  # WARDOGS
+  - RULE-SET,user_wardogs@classical,Wardogs
   
   # Supercell Открыть порт 9339 xkeen -ap 9339
   - RULE-SET,supercell@domain,Supercell
@@ -350,6 +388,7 @@ rules:
   - RULE-SET,user_ru@classical,RU трафик
 
   # Правила для конкретных сервисов
+  - RULE-SET,user_vpn@classical,Other
   - RULE-SET,category-ai@domain,OpenAI
   - RULE-SET,steam@domain,Steam
   - RULE-SET,spotify@domain,Spotify
@@ -365,7 +404,6 @@ rules:
   - RULE-SET,github@domain,GitHub
   - OR,((RULE-SET,google@domain),(RULE-SET,google@ipcidr)),Google
   - RULE-SET,refilter@domain,ReFilter
-  - RULE-SET,user_vpn@classical,Other
 
   # CDN
   - OR,((RULE-SET,amazon@domain),(RULE-SET,amazon@ipcidr)),CDN
