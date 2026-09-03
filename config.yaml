@@ -81,12 +81,6 @@ proxy-groups:
     include-all: true
     proxies: [ VPN pass, DIRECT ]
     icon: https://www.svgrepo.com/show/355484/speed.svg
-    
-  - name: Apple
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
   
   - name: Discord
     type: select
@@ -100,12 +94,6 @@ proxy-groups:
     proxies: [ VPN pass, DIRECT ]
     icon: https://www.svgrepo.com/show/349511/spotify.svg
     
-  - name: Supercell
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/Supercell.png
-
   - name: 2IP.IO
     type: select
     include-all: true
@@ -129,12 +117,6 @@ proxy-groups:
     include-all: true
     proxies: [ VPN pass, DIRECT ]
     icon: https://cdn.jsdelivr.net/gh/ChapaGG/Mihomo@main/icons/Wardogs.png
-
-  - name: Whatsapp
-    type: select
-    include-all: true
-    proxies: [ VPN pass, DIRECT ]
-    icon: https://www.svgrepo.com/show/349563/whatsapp.svg
 
   - name: GitHub
     type: select
@@ -214,13 +196,6 @@ proxy-groups:
     proxies: [ VPN pass, DIRECT ]
     icon: https://www.svgrepo.com/show/462111/netflix.svg
 
-  - name: Остальной трафик
-    type: select
-    include-all: true
-    proxies: [ DIRECT ]
-    exclude-filter: "(?i)Russia|RU"    
-    icon: https://www.svgrepo.com/show/293111/maps-and-flags-global.svg
-
   - name: Реклама
     type: select
     include-all: true
@@ -238,9 +213,7 @@ proxy-groups:
       - Discord
       - Google
       - OpenAI
-      - Apple
       - GitHub
-      - Supercell
       - Steam
       - Twitter
       - Twitch
@@ -249,13 +222,11 @@ proxy-groups:
       - Telegram
       - Meta
       - Wardogs
-      - Whatsapp
       - Spotify
       - CDN
       - ReFilter
       - Other
       - RU трафик
-      - Остальной трафик
       - Реклама
       - DIRECT
 
@@ -272,7 +243,6 @@ rule-providers:
   akamai@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/akamai@ipcidr.mrs }
   amazon@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/amazon.mrs }
   amazon@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/amazon@ipcidr.mrs }
-  apple@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs }
   category-ai@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs }
   cdn77@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/cdn77@ipcidr.mrs }
   category-ru@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ru.mrs }
@@ -300,7 +270,6 @@ rule-providers:
   spotify@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs }
   steam@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs }
   speedtest@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/speedtest.mrs }
-  supercell@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/supercell.mrs }
   telegram@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs }
   telegram@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/telegram@ipcidr.mrs }
   tiktok@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs }
@@ -309,17 +278,12 @@ rule-providers:
   vodafone@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/vodafone@ipcidr.mrs }
   vultr@ipcidr: { <<: *ipcidr, url: https://github.com/zxc-rv/zkeenip-rulesets/releases/latest/download/vultr@ipcidr.mrs }
   youtube@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs }
-  whatsapp@domain: { <<: *domain, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/whatsapp.mrs }
+  quic@inline: { <<: *inline, payload: ["AND,((DST-PORT,443),(NETWORK,UDP))"] }
   user_vpn@classical: # Свои правила для VPN
     type: inline
     behavior: classical
     payload: # Типы правил и примеры: https://wiki.metacubex.one/ru/config/rules/
-      - DOMAIN-KEYWORD,rvpn
-      - IP-ASN,36131                              # imo.im
-      - DOMAIN-SUFFIX,imo.im                      # imo.im
-      - DOMAIN-KEYWORD,imoim                      # imo.im
-      - DOMAIN-KEYWORD,imoapp                     # imo.im
-      - DOMAIN-KEYWORD,imofriends                 # imo.im
+      - DOMAIN-SUFFIX,rvpn.space
       - DOMAIN-KEYWORD,yummyani                   # anime
       - DOMAIN-SUFFIX,es-pio.net                  # arc raiders
       - DOMAIN-KEYWORD,embark                     # arc raiders
@@ -329,9 +293,12 @@ rule-providers:
     type: inline
     behavior: classical
     payload: # Типы правил и примеры: https://wiki.metacubex.one/ru/config/rules/
-      - DOMAIN-SUFFIX,playbattlegrounds.com,RU трафик      #Games PUBG
-      - DOMAIN-SUFFIX,majestic-files.com,RU трафик         #Games GTA5
-      - DOMAIN-SUFFIX,sentry-majestic.com,RU трафик        #Games GTA5
+      - DOMAIN-SUFFIX,ip.me
+      - DOMAIN-SUFFIX,playbattlegrounds.com       #Games PUBG
+      - DOMAIN-SUFFIX,majestic-files.com          #Games GTA5
+      - DOMAIN-SUFFIX,sentry-majestic.com         #Games GTA5
+      - DOMAIN-SUFFIX,monitor.rvpn.online
+      - DOMAIN-SUFFIX,radar.rvpn.online
       #- IP-CIDR,103.10.124.0/23 
       #- IP-ASN,1273   # Telegram, но его нет в zkeenip
       #- DOMAIN-KEYWORD,lichess
@@ -341,29 +308,32 @@ rule-providers:
     type: inline
     behavior: classical
     payload:
-      #- DOMAIN-KEYWORD,wardogs
-      #- DOMAIN-KEYWORD,bulkhead
-      #- DOMAIN-SUFFIX,firstlook.gg
-      #- DOMAIN-SUFFIX,pragmaengine.com
-      #- DOMAIN-SUFFIX,team17.com
-      #- DOMAIN-SUFFIX,api.epicgames.dev
-      #- IP-CIDR,162.254.192.0/20,no-resolve
-      #- IP-CIDR,155.133.224.0/19,no-resolve
-      #- IP-CIDR,103.28.54.0/24,no-resolve
-      #- IP-CIDR,103.10.124.0/23,no-resolve
-      #- IP-CIDR,146.66.152.36/32,no-resolve
-      #- IP-CIDR,143.244.45.177/32,no-resolve
-      #- IP-CIDR,205.196.6.149/32,no-resolve
-      #- IP-CIDR,45.121.184.6/32,no-resolve
-      #- IP-CIDR,104.18.29.123/32,no-resolve
-      #- IP-CIDR,150.171.109.51/32,no-resolve
+      # Подсети
+      - IP-CIDR,162.254.192.0/20,no-resolve
+      - IP-CIDR,155.133.224.0/19,no-resolve
+      - IP-CIDR,103.28.54.0/24,no-resolve
+      - IP-CIDR,103.10.124.0/23,no-resolve
+      # Отдельные IP
+      - IP-CIDR,205.196.6.149/32,no-resolve
+      - IP-CIDR,45.121.184.6/32,no-resolve
+      - IP-CIDR,146.66.152.36/32,no-resolve
+      - IP-CIDR,104.18.29.123/32,no-resolve
+      - IP-CIDR,150.171.109.51/32,no-resolve
+      - IP-CIDR,143.244.45.177/32,no-resolve
 
+      # Домены
+      - DOMAIN-KEYWORD,wardogs
+      - DOMAIN-KEYWORD,bulkhead
+      - DOMAIN-KEYWORD,pragmaengine
+      - DOMAIN-SUFFIX,firstlook.gg
+      - DOMAIN-SUFFIX,epicgames.dev
+      - DOMAIN-SUFFIX,ttvnw.net
    
 # --- ПРАВИЛА МАРШРУТИЗАЦИИ ---
 rules:
   # Блокировки
-  - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # Блокировка QUIC
   - RULE-SET,adlist@domain,Реклама
+  - RULE-SET,quic@inline,REJECT # Блокировка QUIC
 
   # Проверки
   - DOMAIN-SUFFIX,2ip.io,2IP.IO
@@ -371,17 +341,6 @@ rules:
   
   # WARDOGS
   - RULE-SET,user_wardogs@classical,Wardogs
-  
-  # Supercell Открыть порт 9339 xkeen -ap 9339
-  - RULE-SET,supercell@domain,Supercell
-  - AND,((IP-ASN,14618),(DST-PORT,9339)),Supercell
-  - AND,((IP-ASN,16509),(DST-PORT,9339)),Supercell
-  
-  # Whatsapp // открывам порты xkeen -ap 443,3478,46420
-  - RULE-SET,whatsapp@domain,Whatsapp
-  - IP-ASN,32934,Whatsapp
-  - IP-ASN,11917,Whatsapp
-  - IP-ASN,9002,Whatsapp
 
   # Российский трафик
   - RULE-SET,category-ru@domain,RU трафик
@@ -400,7 +359,6 @@ rules:
   - RULE-SET,twitter@domain,Twitter
   - OR,((RULE-SET,meta@domain),(RULE-SET,meta@ipcidr,no-resolve)),Meta
   - OR,((RULE-SET,telegram@domain),(RULE-SET,telegram@ipcidr,no-resolve)),Telegram
-  - RULE-SET,apple@domain,Apple
   - RULE-SET,github@domain,GitHub
   - OR,((RULE-SET,google@domain),(RULE-SET,google@ipcidr)),Google
   - RULE-SET,refilter@domain,ReFilter
@@ -421,4 +379,4 @@ rules:
   - RULE-SET,cdn77@ipcidr,CDN
   
   # Остальной трафик
-  - MATCH,DIRECT,Остальной трафик
+  - MATCH,DIRECT
