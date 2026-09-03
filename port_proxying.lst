@@ -6,7 +6,6 @@
 3478
 5222
 8443
-9339
 19200:19400
 25565
 50000:50100
@@ -17,7 +16,7 @@
 #    +  Telegram: xkeen -ap 80,443,596:599,1400,5222
 #    +  Discord: xkeen -ap 80,443,2000:2300,8443,19200:19400,50000:50030   ( 30000:65535 Суммируется Discord+Roblox+Arc Raiders )
 #    -  Roblox: xkeen -ap 80,443,49152:65535   ( 30000:65535 Суммируется Discord+Roblox+Arc Raiders )
-#    +  Supercell: xkeen -ap 80,443,9339
+#    -  Supercell: xkeen -ap 80,443,9339
 #    -  Arc Raiders: xkeen -ap 30000:50000   ( 30000:65535 Суммируется Discord+Roblox+Arc Raiders )
 #    -  xbox cloud gaming: xkeen -ap 80,443,3544
-#    -  Minecraft Java: xkeen -ap 80,443,25565
+#    +  Minecraft Java: xkeen -ap 80,443,25565
