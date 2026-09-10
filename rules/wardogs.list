@@ -1,7 +1,6 @@
 AND,((DOMAIN-SUFFIX,wardogs.com))
 AND,((DOMAIN-SUFFIX,bulkhead.com))
 AND,((DOMAIN-SUFFIX,team17.com))
-AND,((DOMAIN,api.epicgames.dev))
 AND,((DOMAIN,firstlook.gg))
 AND,((DOMAIN,live.wardogs.bulkhead.pragmaengine.com))
 AND,((RULE-SET,amazon@ipcidr,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27133))
