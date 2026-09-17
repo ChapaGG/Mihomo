@@ -21,6 +21,18 @@
   * [port_exclude.lst](https://github.com/ChapaGG/Mihomo/blob/main/port_exclude.lst) - список портов для исключения из обработки Xkeen
   * [ip_exclude.lst](https://github.com/ChapaGG/Mihomo/blob/main/ip_exclude.lst) - список ip для исключения из обработки Xkeen
     
-[update_mihomo_config.sh](https://github.com/ChapaGG/Mihomo/blob/main/update_mihomo_config.sh) - для автообновления конфига с GitHub
-  * в процессе написания.
-  * просто шаблон составленный AI, пока просто набросок
+&nbsp;
+
+## 🙏 Благодарности
+
+- [**Skrill0/XKeen**](https://github.com/Skrill0/XKeen)  
+- [**jameszeroX/XKeen**](https://github.com/jameszeroX/XKeen)
+- [**zxc-rv/XKeen-UI**](https://github.com/zxc-rv/XKeen-UI)
+
+&nbsp;
+
+## 🪙 Понравился проект? Поддержи разработку
+
+- [**Cloudtips**](https://pay.cloudtips.ru/p/a7b5efda)
+
+- Банковская карта: `2204 2402 3029 6305`
