@@ -1,4 +1,4 @@
-# --- Доменные имена ---
+# --- Домены игры и движка ---
 DOMAIN-SUFFIX,wardogs.com
 DOMAIN-SUFFIX,bulkhead.com
 DOMAIN-SUFFIX,team17.com
@@ -6,21 +6,27 @@ DOMAIN-SUFFIX,firstlook.gg
 DOMAIN-SUFFIX,pragmaengine.com
 DOMAIN-SUFFIX,epicgames.dev
 
-# --- Игровые серверы матчей (Amazon GameLift / Pragma Engine) ---
-AND,((IP-CIDR,54.115.0.0/16),(NETWORK,UDP),(DST-PORT,4192-4193))
+# --- Игровые серверы матчей (Amazon GameLift UDP 4192-4193) ---
+# Используем ваш amazon@ipcidr:
+AND,((RULE-SET,amazon@ipcidr),(NETWORK,UDP),(DST-PORT,4192-4193))
 
-# --- Голосовой чат игры (Vivox) ---
+# --- Синхронизация состояния игры (Cloudflare State Sync UDP 19200-19400) ---
+# Используем ваш cloudflare@ipcidr:
+AND,((RULE-SET,cloudflare@ipcidr),(NETWORK,UDP),(DST-PORT,19200-19400))
+
+# --- Голосовой чат игры (Vivox UDP 54000-54020) ---
 AND,((IP-CIDR,85.236.96.0/19),(NETWORK,UDP),(DST-PORT,54000-54020))
 
-# --- Steam Datagram Relay (Опрос серверов, координация) ---
-AND,((IP-CIDR,162.254.192.0/20),(NETWORK,UDP),(DST-PORT,27000-27150))
-AND,((IP-CIDR,155.133.224.0/19),(NETWORK,UDP),(DST-PORT,27000-27150))
-AND,((IP-CIDR,146.66.0.0/16),(NETWORK,UDP),(DST-PORT,27000-27150))
-AND,((IP-CIDR,185.25.0.0/16),(NETWORK,UDP),(DST-PORT,27000-27150))
-AND,((IP-CIDR,103.10.124.0/23),(NETWORK,UDP),(DST-PORT,27000-27150))
-AND,((IP-CIDR,103.28.54.0/24),(NETWORK,UDP),(DST-PORT,27000-27150))
-AND,((IP-CIDR,205.196.6.0/24),(NETWORK,UDP),(DST-PORT,27000-27150))
-AND,((IP-CIDR,45.121.184.0/24),(NETWORK,UDP),(DST-PORT,27000-27150))
+# --- Steam Datagram Relay & Valve Network (ПИНГ И БРАУЗЕР СЕРВЕРОВ) ---
+# Прямые подсети Valve без ограничений по портам, чтобы опрос проходил всегда:
+IP-CIDR,162.254.192.0/20
+IP-CIDR,155.133.224.0/19
+IP-CIDR,146.66.0.0/16
+IP-CIDR,185.25.0.0/16
+IP-CIDR,103.10.124.0/23
+IP-CIDR,103.28.54.0/24
+IP-CIDR,205.196.6.0/24
+IP-CIDR,45.121.184.0/24
 
-# --- Координационный шлюз ---
-AND,((IP-CIDR,209.250.254.15/32),(NETWORK,UDP),(DST-PORT,21116))
+# --- Бэкенд Pragma / Epic Telemetry ---
+IP-CIDR,209.250.254.15/32
