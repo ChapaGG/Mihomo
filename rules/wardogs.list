@@ -1,15 +1,26 @@
-AND,((DOMAIN-SUFFIX,wardogs.com))
-AND,((DOMAIN-SUFFIX,bulkhead.com))
-AND,((DOMAIN-SUFFIX,team17.com))
-AND,((DOMAIN-SUFFIX,firstlook.gg))
-AND,((DOMAIN-SUFFIX,pragmaengine.com))
-AND,((IP-CIDR,54.115.8.65/32,no-resolve),(NETWORK,UDP),(DST-PORT,4192))
-AND,((IP-CIDR,162.254.192.0/20,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27133))
-AND,((IP-CIDR,155.133.224.0/19,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27133))
-AND,((IP-CIDR,146.66.0.0/16,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27133))
+# --- Доменные правила (API, авторизация, телеметрия) ---
+DOMAIN-SUFFIX,wardogs.com
+DOMAIN-SUFFIX,bulkhead.com
+DOMAIN-SUFFIX,team17.com
+DOMAIN-SUFFIX,firstlook.gg
+DOMAIN-SUFFIX,pragmaengine.com
+DOMAIN-SUFFIX,epicgames.dev
+
+# --- Игровые серверы матчей (Amazon GameLift / Pragma Engine UDP 4192:4193) ---
+AND,((IP-CIDR,54.115.0.0/16,no-resolve),(NETWORK,UDP),(DST-PORT,4192-4193))
+
+# --- Голосовой чат игры (Vivox UDP 54000:54020) ---
+AND,((IP-CIDR,85.236.96.0/19,no-resolve),(NETWORK,UDP),(DST-PORT,54000-54020))
+
+# --- Steam Datagram Relay (Опрос серверов, пинг, координация) ---
+AND,((IP-CIDR,162.254.192.0/20,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27150))
+AND,((IP-CIDR,155.133.224.0/19,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27150))
+AND,((IP-CIDR,146.66.0.0/16,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27150))
+AND,((IP-CIDR,185.25.0.0/16,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27150))
+AND,((IP-CIDR,103.10.124.0/23,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27150))
+AND,((IP-CIDR,103.28.54.0/24,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27150))
+AND,((IP-CIDR,205.196.6.0/24,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27150))
+AND,((IP-CIDR,45.121.184.0/24,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27150))
+
+# --- Дополнительный координационный шлюз ---
 AND,((IP-CIDR,209.250.254.15/32,no-resolve),(NETWORK,UDP),(DST-PORT,21116))
-AND,((IP-CIDR,185.25.0.0/16,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27133))
-AND,((IP-CIDR,103.10.124.0/23,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27133))
-AND,((IP-CIDR,103.28.54.0/24,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27133))
-AND,((IP-CIDR,205.196.6.0/24,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27133))
-AND,((IP-CIDR,45.121.184.0/24,no-resolve),(NETWORK,UDP),(DST-PORT,27000-27133))
