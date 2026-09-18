@@ -9,15 +9,18 @@ DOMAIN-SUFFIX,epicgames.dev
 # --- Игровые серверы матчей (Amazon GameLift UDP 4192-4193) ---
 AND,((RULE-SET,amazon@ipcidr),(NETWORK,UDP),(DST-PORT,4192-4193))
 
+# --- Синхронизация состояния игры (Cloudflare State Sync UDP 19200-19400) ---
+AND,((RULE-SET,cloudflare@ipcidr),(NETWORK,UDP),(DST-PORT,19200-19400))
+
 # --- Голосовой чат игры (Vivox UDP 54000-54020) ---
 AND,((IP-CIDR,85.236.96.0/19),(NETWORK,UDP),(DST-PORT,54000-54020))
 
-# --- Pragma Engine / Cloudflare State Sync & Ping Gateway ---
-# Заворачиваем подсеть шлюза целиком без фильтра портов:
+# --- Pragma / Cloudflare Gateway ---
 IP-CIDR,104.29.147.0/24
 IP-CIDR,209.250.254.15/32
 
 # --- Steam Datagram Relay & Valve Network (ПИНГ И БРАУЗЕР СЕРВЕРОВ) ---
+# Обязательно без ограничений по протоколу и портам:
 IP-CIDR,162.254.192.0/20
 IP-CIDR,155.133.224.0/19
 IP-CIDR,146.66.0.0/16
@@ -27,7 +30,7 @@ IP-CIDR,103.28.54.0/24
 IP-CIDR,205.196.6.0/24
 IP-CIDR,45.121.184.0/24
 
-# --- Бэкенд телеметрии и сессий ---
+# --- Бэкенд замера задержки и телеметрии сессий ---
+IP-CIDR,3.254.46.0/24
 IP-CIDR,52.16.93.0/24
 IP-CIDR,63.34.138.0/24
-IP-CIDR,3.254.46.0/24
