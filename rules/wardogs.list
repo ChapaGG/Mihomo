@@ -1,4 +1,4 @@
-# --- Домены игры и движка ---
+# --- Доменные имена игры и бэкенда ---
 DOMAIN-SUFFIX,wardogs.com
 DOMAIN-SUFFIX,bulkhead.com
 DOMAIN-SUFFIX,team17.com
@@ -7,18 +7,16 @@ DOMAIN-SUFFIX,pragmaengine.com
 DOMAIN-SUFFIX,epicgames.dev
 
 # --- Игровые серверы матчей (Amazon GameLift UDP 4192-4193) ---
-# Используем ваш amazon@ipcidr:
 AND,((RULE-SET,amazon@ipcidr),(NETWORK,UDP),(DST-PORT,4192-4193))
 
 # --- Синхронизация состояния игры (Cloudflare State Sync UDP 19200-19400) ---
-# Используем ваш cloudflare@ipcidr:
 AND,((RULE-SET,cloudflare@ipcidr),(NETWORK,UDP),(DST-PORT,19200-19400))
 
 # --- Голосовой чат игры (Vivox UDP 54000-54020) ---
 AND,((IP-CIDR,85.236.96.0/19),(NETWORK,UDP),(DST-PORT,54000-54020))
 
 # --- Steam Datagram Relay & Valve Network (ПИНГ И БРАУЗЕР СЕРВЕРОВ) ---
-# Прямые подсети Valve без ограничений по портам, чтобы опрос проходил всегда:
+# Заворачиваем подсети целиком: и TCP (порт 27019 и др.), и UDP (27015-27150)
 IP-CIDR,162.254.192.0/20
 IP-CIDR,155.133.224.0/19
 IP-CIDR,146.66.0.0/16
