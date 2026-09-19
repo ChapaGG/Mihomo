@@ -10,8 +10,14 @@ DOMAIN-SUFFIX,epicgames.dev
 AND,((IP-CIDR,54.115.0.0/16),(NETWORK,UDP),(DST-PORT,4192-4193))
 
 # --- Синхронизация состояния игры (Cloudflare State Sync UDP 19200-19400) ---
+AND,((IP-CIDR,104.16.0.0/12),(NETWORK,UDP),(DST-PORT,19200-19400))
 AND,((IP-CIDR,162.158.0.0/15),(NETWORK,UDP),(DST-PORT,19200-19400))
 AND,((IP-CIDR,172.64.0.0/13),(NETWORK,UDP),(DST-PORT,19200-19400))
+
+# --- Координаторы сессий Pragma Engine / AWS Global Accelerator ---
+IP-CIDR,35.71.0.0/16
+IP-CIDR,3.173.0.0/16
+IP-CIDR,3.218.0.0/15
 
 # --- Steam Datagram Relay & Valve Network ---
 IP-CIDR,162.254.192.0/20
