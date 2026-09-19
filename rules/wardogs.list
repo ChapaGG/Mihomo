@@ -1,4 +1,4 @@
-# --- Домены игры и движка ---
+# --- Домены игры, авторизации и движка (Блокируются РКН -> VPN) ---
 DOMAIN-SUFFIX,wardogs.com
 DOMAIN-SUFFIX,bulkhead.com
 DOMAIN-SUFFIX,team17.com
@@ -6,20 +6,12 @@ DOMAIN-SUFFIX,firstlook.gg
 DOMAIN-SUFFIX,pragmaengine.com
 DOMAIN-SUFFIX,epicgames.dev
 
-# --- Игровые серверы матчей (Amazon GameLift UDP 4192-4193) ---
-AND,((IP-CIDR,54.115.0.0/16),(NETWORK,UDP),(DST-PORT,4192-4193))
-
-# --- Синхронизация состояния игры (Cloudflare State Sync UDP 19200-19400) ---
-AND,((IP-CIDR,104.16.0.0/12),(NETWORK,UDP),(DST-PORT,19200-19400))
-AND,((IP-CIDR,162.158.0.0/15),(NETWORK,UDP),(DST-PORT,19200-19400))
-AND,((IP-CIDR,172.64.0.0/13),(NETWORK,UDP),(DST-PORT,19200-19400))
-
-# --- Координаторы сессий Pragma Engine / AWS Global Accelerator ---
+# --- Координаторы сессий Pragma Engine / AWS Global Accelerator (VPN) ---
 IP-CIDR,35.71.0.0/16
 IP-CIDR,3.173.0.0/16
 IP-CIDR,3.218.0.0/15
 
-# --- Steam Datagram Relay (ТОЛЬКО UDP для пинга и сессий матча) ---
+# --- Steam Datagram Relay (Координация лобби и подключений -> VPN) ---
 AND,((IP-CIDR,162.254.192.0/20),(NETWORK,UDP))
 AND,((IP-CIDR,155.133.224.0/19),(NETWORK,UDP))
 AND,((IP-CIDR,146.66.0.0/16),(NETWORK,UDP))
@@ -29,5 +21,5 @@ AND,((IP-CIDR,103.28.54.0/24),(NETWORK,UDP))
 AND,((IP-CIDR,205.196.6.0/24),(NETWORK,UDP))
 AND,((IP-CIDR,45.121.184.0/24),(NETWORK,UDP))
 
-# --- Бэкенд Pragma / Координатор ---
+# --- Бэкенд Pragma / Координатор (VPN) ---
 AND,((IP-CIDR,209.250.254.15/32),(NETWORK,UDP),(DST-PORT,21116))
