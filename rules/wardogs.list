@@ -1,3 +1,4 @@
+# ---Ports    +  Wardogs: xkeen -ap 4192:4193,21116,27000-27150,54000:54020
 # --- Домены игры, авторизации и движка ---
 DOMAIN-SUFFIX,wardogs.com
 DOMAIN-SUFFIX,bulkhead.com
@@ -6,7 +7,7 @@ DOMAIN-SUFFIX,firstlook.gg
 DOMAIN-SUFFIX,pragmaengine.com
 DOMAIN-SUFFIX,epicgames.dev
 
-# --- Игровые серверы матчей (Amazon GameLift UDP 4192-4193) ---
+# --- Игровые серверы матчей (Amazon GameLift) ---
 AND,((IP-CIDR,54.115.0.0/16),(NETWORK,UDP),(DST-PORT,4192-4193))
 
 # --- Координаторы сессий Pragma Engine / AWS Global Accelerator ---
